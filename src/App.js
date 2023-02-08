@@ -1,6 +1,6 @@
 // import React, { useEffect } from 'react';
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
 // import { fetchRockets, fetchDragons, fetchMissions } from './redux/configureStore';
 // import Navbar from './Components/Navbar/Navbar';
@@ -21,16 +21,29 @@ function App() {
   //   dispatch(fetchDragons());
   //   dispatch(fetchMissions());
   // }, [dispatch]);
+  const [loggedInStatus, setLoggedInStatus] = useState('NOT_LOGGED_IN');
+  const [user, setUser] = useState({});
 
   return (
     <div className={styles['app-container']}>
       {/* <Navbar /> */}
-      <Routes>
-        {/* <Route exact path="/" element={<RocketList />} /> */}
-        {/* <Route exact path="/dragons" element={<DragonList />} /> */}
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/dashboard" element={<Dashboard />} />
-      </Routes>
+      <BrowserRouter>
+        <Routes>
+          {/* <Route exact path="/" element={<RocketList />} /> */}
+          {/* <Route exact path="/dragons" element={<DragonList />} /> */}
+          <Route 
+            exact 
+            path="/"
+            element={<Home loggedInStatus={loggedInStatus} setLoggedInStatus={setLoggedInStatus} />}
+          />
+
+          <Route 
+            exact 
+            path="/dashboard" 
+            element={<Dashboard loggedInStatus={loggedInStatus} />} />
+        </Routes>
+      </BrowserRouter>
+
     </div>
   );
 }
