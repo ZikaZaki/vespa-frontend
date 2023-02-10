@@ -98,12 +98,12 @@ function App() {
         <Route
           exact
           path="/dashboard"
-          element={
-            <Dashboard 
+          element={(
+            <Dashboard
               handleLogout={handleLogout}
               loggedInStatus={state.loggedInStatus}
             />
-          }
+          )}
         />
       </Routes>
     </div>
