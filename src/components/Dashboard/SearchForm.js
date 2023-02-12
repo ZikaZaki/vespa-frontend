@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const SearchForm = () => {
   return (
     /* SearchForm */
-    <div className="relative flex flex-col w-full px-4 py-2 lg:px-6 lg:py-2 h-auto">
+    <div className="relative flex flex-col w-full px-4 pt-6 pb-4 lg:px-6 lg:py-2 h-auto">
       <form action="/" method="POST">
           <div className="relative flex flex-row items-center gap-1">
             <input
