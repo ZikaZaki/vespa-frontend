@@ -12,6 +12,7 @@ import axios from 'axios';
 // import styling
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
+import AdminPanel from './components/Dashboard/index';
 
 function App() {
   // const dispatch = useDispatch();
@@ -78,7 +79,7 @@ function App() {
   }, []);
 
   return (
-    <div className="flex bg-bg_secondary">
+    <div className="h-screen bg-bg_secondary">
       {/* <Navbar /> */}
       <Routes>
         {/* <Route exact path="/" element={<RocketList />} /> */}
@@ -93,6 +94,12 @@ function App() {
               loggedInStatus={state.loggedInStatus}
             />
           )}
+        />
+
+        <Route
+          exact
+          path="/admin"
+          element={<AdminPanel />}
         />
 
         <Route

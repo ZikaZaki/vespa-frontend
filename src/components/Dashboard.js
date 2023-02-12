@@ -25,8 +25,18 @@ const Dashboard = (props) => {
 
   return (
     <div
-      className="relative p-0 flex w-screen h-screen rounded-lg bg-bg_secondary overflow-hidden border-md shadow-md drop-shadow-md md:p-1"
+      className="relative w-screen h-screen rounded-lg bg-bg_secondary overflow-hidden border-md shadow-md drop-shadow-md md:p-1"
     >
+      {/* <div className="px-4 py-3">
+        <button
+          type="button"
+          className="absolute  bg-very_dark_limerick flex flex-col h-12 w-10 justify-around items-center text-white cursor-pointer rounded-lg"
+        >
+          <span className="w-1/2 h-1.5 self-end rounded-lg bg-white"></span>
+          <span className="w-full h-1.5 rounded-lg bg-white"></span>
+          <span className="w-1/2 h-1.5 self-start rounded-lg bg-white"></span>
+        </button>
+      </div> */}
       <Sidebar />
       <h1>Dashboard</h1>
       <h1 className="text-3xl font-bold underline text-center">
