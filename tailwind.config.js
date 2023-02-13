@@ -30,7 +30,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      translate: ["responsive", "group-hover", "hover", "focus"],
+      translate: ['responsive', 'group-hover', 'hover', 'focus'],
     },
   },
   /* eslint-disable global-require */

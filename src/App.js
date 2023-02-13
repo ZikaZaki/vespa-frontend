@@ -4,15 +4,8 @@ import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 // import { useDispatch } from 'react-redux';
 // import { fetchRockets, fetchDragons, fetchMissions } from './redux/configureStore';
-// import Navbar from './Components/Navbar/Navbar';
-// import RocketList from './Components/RocketList/RocketList';
-// import DragonList from './Components/DragonList/DragonList';
-// import MissionTable from './Components/MissionTable/MissionTable';
-// import ProfilePage from './Components/ProfilePage/ProfilePage';
-// import styling
 import Home from './components/Home';
-import Dashboard from './components/Dashboard';
-import AdminPanel from './components/Dashboard/index';
+import Dashboard from './components/Dashboard/index';
 
 function App() {
   // const dispatch = useDispatch();
@@ -33,8 +26,6 @@ function App() {
       loggedInStatus: 'LOGGED_IN',
       user: data.user,
     });
-    // setLoggedInStatus('LOGGED_IN');
-    // setUser(data.user);
   };
 
   const handleLogout = () => {
@@ -42,8 +33,6 @@ function App() {
       loggedInStatus: 'NOT_LOGGED_IN',
       user: {},
     });
-    // setLoggedInStatus('NOT_LOGGED_IN');
-    // setUser({});
   };
 
   const checkLoginStatus = () => {
@@ -57,15 +46,11 @@ function App() {
           loggedInStatus: 'LOGGED_IN',
           user: response.data.user,
         });
-        // setLoggedInStatus('LOGGED_IN');
-        // setUser(response.data.user);
       } else if (!response.data.logged_in && state.loggedInStatus === 'LOGGED_IN') {
         setState({
           loggedInStatus: 'NOT_LOGGED_IN',
           user: {},
         });
-        // setLoggedInStatus('NOT_LOGGED_IN');
-        // setUser({});
       } else {
         console.log('Logged in status: ', state.loggedInStatus);
       }
@@ -95,13 +80,7 @@ function App() {
             />
           )}
         />
-
-        <Route
-          exact
-          path="/admin"
-          element={<AdminPanel />}
-        />
-
+        {/* Dashboard  */}
         <Route
           exact
           path="/dashboard"
