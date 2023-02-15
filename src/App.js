@@ -5,6 +5,7 @@ import axios from 'axios';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard/index';
 import City from './components/city/index';
+import Sidebar from './components/Dashboard/Sidebar';
 
 function App() {
   const [state, setState] = useState({
@@ -54,7 +55,8 @@ function App() {
   }, []);
 
   return (
-    <div className="h-screen bg-bg_secondary">
+    <div className="block lg:flex h-screen w-screen bg-bg_secondary">
+      <Sidebar />
       {/* <Navbar /> */}
       <Routes>
         {/* <Route exact path="/dragons" element={<DragonList />} /> */}

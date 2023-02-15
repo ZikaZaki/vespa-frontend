@@ -8,6 +8,7 @@ const Sidebar = () => {
   const [toggle, setToggle] = useState(false);
   return (
     <>
+
       {/* Menu-Burger */}
       <div className={`relative ${toggle ? 'hidden' : 'flex'} flex-row lg:items-center p-4 lg:p-6 w-full h-20 lg:hidden rounded-md`}>
         {/* Menu-Burger Button mobile-only */}
@@ -32,7 +33,7 @@ const Sidebar = () => {
           />
         </button>
       </div>
-      <div className={`absolute ${toggle ? 'flex' : 'hidden'} lg:flex lg:w-72 flex-col w-screen h-full bg-very_dark_limerick bg-opacity-75 backdrop-blur-sm rounded-lg lg:bg-bg_primary lg:border-md lg:shadow-md lg:drop-shadow-md`}>
+      <div className={`relative ${toggle ? 'flex' : 'hidden'} lg:flex lg:w-96 flex-col w-full h-full bg-very_dark_limerick bg-opacity-75 backdrop-blur-sm rounded-lg lg:bg-bg_primary lg:border-md lg:shadow-md lg:drop-shadow-md`}>
         {/* Menu-Burger & Logo MainContainer */}
         <div className="relative flex flex-row lg:items-center p-4 lg:p-6 w-full h-24 rounded-md">
           {/* Menu-Burger Button mobile-only */}
@@ -78,7 +79,7 @@ const Sidebar = () => {
             />
           </div>
           {/* Profile-Name & Waving-Icon  */}
-          <div className="p-2 lg:p-4">
+          <div className="p-2 lg:p-2">
             <p className="text-lg font-semibold text-gray-200 lg:text-gray-900">Hello, ZikaZaki👋</p>
             <p className="text-sm text-gray-300 lg:text-gray-600">zikazaki@gmail.com</p>
           </div>
