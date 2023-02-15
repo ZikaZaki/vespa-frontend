@@ -8,9 +8,12 @@ const Sidebar = () => {
   const [toggle, setToggle] = useState(false);
   return (
     <>
-
       {/* Menu-Burger */}
-      <div className={`relative ${toggle ? 'hidden' : 'flex'} flex-row lg:items-center p-4 lg:p-6 w-full h-20 lg:hidden rounded-md`}>
+      <div
+        className={`relative ${
+          toggle ? 'hidden' : 'flex'
+        } flex-row lg:items-center p-4 lg:p-6 w-full h-20 lg:hidden rounded-md`}
+      >
         {/* Menu-Burger Button mobile-only */}
         <button
           type="button"
@@ -33,13 +36,19 @@ const Sidebar = () => {
           />
         </button>
       </div>
-      <div className={`relative ${toggle ? 'flex' : 'hidden'} lg:flex lg:w-96 flex-col w-full h-full bg-very_dark_limerick bg-opacity-75 backdrop-blur-sm rounded-lg lg:bg-bg_primary lg:border-md lg:shadow-md lg:drop-shadow-md`}>
+      <div
+        className={`relative ${
+          toggle ? 'flex' : 'hidden'
+        } lg:flex lg:w-96 flex-col w-full h-full bg-very_dark_limerick bg-opacity-75 backdrop-blur-sm rounded-lg lg:bg-bg_primary lg:border-md lg:shadow-md lg:drop-shadow-md`}
+      >
         {/* Menu-Burger & Logo MainContainer */}
         <div className="relative flex flex-row lg:items-center p-4 lg:p-6 w-full h-24 rounded-md">
           {/* Menu-Burger Button mobile-only */}
           <button
             type="button"
-            className={`${toggle ? 'flex' : 'hidden'} flex-col h-12 w-10 lg:bg-dark_limerick rounded-lg justify-center items-center group lg:hidden`}
+            className={`${
+              toggle ? 'flex' : 'hidden'
+            } flex-col h-12 w-10 lg:bg-dark_limerick rounded-lg justify-center items-center group lg:hidden`}
             onClick={() => setToggle(!toggle)}
           >
             <div
@@ -72,16 +81,16 @@ const Sidebar = () => {
         <div className="relative flex flex-row flex-wrap items-center lg:flex-row px-4 py-6 lg:p-6 w-full h-auto">
           {/* Profile-Photo  */}
           <div className="w-14 h-14 rounded-full overflow-hidden outline-none ring-2 ring-lime-200">
-            <img
-              src={avatar}
-              alt="avatar"
-              className="w-14 h-14 object-cover"
-            />
+            <img src={avatar} alt="avatar" className="w-14 h-14 object-cover" />
           </div>
           {/* Profile-Name & Waving-Icon  */}
           <div className="p-2 lg:p-2">
-            <p className="text-lg font-semibold text-gray-200 lg:text-gray-900">Hello, ZikaZaki👋</p>
-            <p className="text-sm text-gray-300 lg:text-gray-600">zikazaki@gmail.com</p>
+            <p className="text-lg font-semibold text-gray-200 lg:text-gray-900">
+              Hello, ZikaZaki👋
+            </p>
+            <p className="text-sm text-gray-300 lg:text-gray-600">
+              zikazaki@gmail.com
+            </p>
           </div>
         </div>
         <hr className="h-[3px] bg-gray-400 lg:bg-gray-700 lg:hidden " />
@@ -92,26 +101,49 @@ const Sidebar = () => {
           {/* Menu-Links  */}
           <div className="flex flex-col w-full h-full justify-between gap-2 text-xl lg:text-lg font-bold text-gray-200 lg:text-gray-900 uppercase">
             <div className="flex flex-col w-full gap-2">
-              <a href="##" className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white">
+              <a
+                href="http://localhost:3000/motorcycle"
+                className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
+              >
                 Models
               </a>
-              <a href="##" className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white">
+              <a
+                href="##"
+                className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
+              >
                 Brands
               </a>
-              <a href="##" className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white">
+              <a
+                href="##"
+                className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
+              >
                 Locations
               </a>
-              <a href="##" className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white">
+              <a
+                href="##"
+                className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
+              >
                 Lifestyle
               </a>
-              <a href="##" className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white">
+              <a
+                href="##"
+                className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
+              >
                 Shopping
               </a>
-              <a href="##" className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white">
+              <a
+                href="##"
+                className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
+              >
                 My Reservations
               </a>
             </div>
-            <a href="##" className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white">Logout</a>
+            <a
+              href="##"
+              className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
+            >
+              Logout
+            </a>
           </div>
           {/* Social-Icons & CopyRights  */}
           <SocialLinks />

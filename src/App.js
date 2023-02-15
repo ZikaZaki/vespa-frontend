@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Dashboard from './components/Dashboard/index';
 import City from './components/city/index';
 import Sidebar from './components/Dashboard/Sidebar';
+import Motorcycle from './components/motorcycle/Motorcycle';
 
 function App() {
   const [state, setState] = useState({
@@ -84,11 +85,9 @@ function App() {
           )}
         />
         {/* City */}
-        <Route
-          exact
-          path="/city"
-          element={(<City />)}
-        />
+        <Route exact path="/city" element={<City />} />
+        {/* Motorcycle */}
+        <Route exact path="/motorcycle" element={<Motorcycle />} />
       </Routes>
     </div>
   );
