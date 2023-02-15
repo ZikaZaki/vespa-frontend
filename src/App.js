@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard/index';
-import City from './components/city/City';
+import City from './components/city/index';
 
 function App() {
   const [state, setState] = useState({
@@ -77,6 +77,7 @@ function App() {
             <Dashboard
               handleLogout={handleLogout}
               loggedInStatus={state.loggedInStatus}
+              component={City}
             />
           )}
         />

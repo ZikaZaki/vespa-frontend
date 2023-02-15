@@ -8,6 +8,7 @@ const Dashboard = (props) => {
   const {
     loggedInStatus,
     handleLogout,
+    component: Component,
   } = props;
   const navigate = useNavigate();
   const handleLogoutClick = () => {
@@ -25,7 +26,7 @@ const Dashboard = (props) => {
 
   return (
     <div
-      className="relative w-screen h-screen rounded-lg bg-bg_secondary overflow-hidden border-md shadow-md drop-shadow-md md:p-1"
+      className="relative flex flex-col w-screen h-screen rounded-lg bg-bg_secondary overflow-hidden border-md shadow-md drop-shadow-md md:p-1"
     >
       {/* <div className="px-4 py-3">
         <button
@@ -39,7 +40,8 @@ const Dashboard = (props) => {
         </button>
       </div> */}
       <Sidebar />
-      <h1>Dashboard</h1>
+      {/* <Component {...props} /> */}
+      <h1 className="relative">Dashboard</h1>
       <h1 className="text-3xl font-bold underline text-center">
         Status:
         {loggedInStatus}
