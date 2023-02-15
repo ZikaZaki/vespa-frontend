@@ -2,21 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
-// import { useDispatch } from 'react-redux';
-// import { fetchRockets, fetchDragons, fetchMissions } from './redux/configureStore';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard/index';
+import City from './components/city/index';
+import Sidebar from './components/Dashboard/Sidebar';
 
 function App() {
-  // const dispatch = useDispatch();
-  // Get rockets, dragons, and missions from the API
-  // useEffect(() => {
-  //   dispatch(fetchRockets());
-  //   dispatch(fetchDragons());
-  //   dispatch(fetchMissions());
-  // }, [dispatch]);
-  // const [loggedInStatus, setLoggedInStatus] = useState();
-  // const [user, setUser] = useState({});
   const [state, setState] = useState({
     loggedInStatus: 'NOT_LOGGED_IN',
     user: {},
@@ -64,10 +55,10 @@ function App() {
   }, []);
 
   return (
-    <div className="h-screen bg-bg_secondary">
+    <div className="block lg:flex h-screen w-screen bg-bg_secondary">
+      <Sidebar />
       {/* <Navbar /> */}
       <Routes>
-        {/* <Route exact path="/" element={<RocketList />} /> */}
         {/* <Route exact path="/dragons" element={<DragonList />} /> */}
         <Route
           exact
@@ -88,8 +79,15 @@ function App() {
             <Dashboard
               handleLogout={handleLogout}
               loggedInStatus={state.loggedInStatus}
+              component={City}
             />
           )}
+        />
+        {/* City */}
+        <Route
+          exact
+          path="/city"
+          element={(<City />)}
         />
       </Routes>
     </div>
