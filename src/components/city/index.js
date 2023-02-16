@@ -3,12 +3,34 @@ import React, { useState, useEffect } from 'react';
 import CityList from './CityList';
 import CityGrid from './CityGrid';
 import CityForm from './CityForm';
+import Dialog from '../Dialog';
 
 const City = () => {
-  // const [city, setCity] = useState(null);
   const [listView, setListView] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [dialog, setDialog] = useState({message: "", show: false, itemId: null, action: ""});
+
+  const handleDialog = (message, show, itemId, action) => {
+    setDialog({message, show, itemId, action});
+  };
+
+  const handleDelete = (id) => {
+    console.log('ID: ', id);
+    axios.delete(`http://localhost:3001/cities/${id}`).then((response) => {
+      console.log('City deleted: ', response);
+    }).catch((error) => {
+      console.log('City delete error: ', error);
+    });
+  };
+
+  const confirmDialog = (action) => {
+    if (action.toUpperCase() === 'YES') {
+      handleDelete(dialog.itemId);
+    }
+    setDialog({message: "", show: false, itemId: null, action: ""});
+  };
+
 
   const showModal = (form) => {
     if (form.toUpperCase() === 'ADD') {
@@ -23,49 +45,6 @@ const City = () => {
     }
   };
 
-  function handleDelete(e) {
-    const id = e.target.value;
-    console.log('ID: ', id);
-    axios.delete(`http://localhost:3001/cities/${id}`).then((response) => {
-      console.log('City deleted: ', response);
-    }).catch((error) => {
-      console.log('City delete error: ', error);
-    });
-  }
-
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   console.log('City: ', city);
-  //   const data = new FormData();
-  //   data.append('city[name]', event.target.name.value);
-  //   data.append('city[description]', event.target.description.value);
-  //   data.append('city[image]', event.target.image.files[0]);
-  //   submitToAPI(data);
-  // }
-
-  // function submitToAPI(data) {
-  //   axios.post('http://localhost:3001/cities', data, {
-  //       headers: {
-  //           'Content-Type': 'multipart/form-data',
-  //       },
-  //   }).then((response) => {
-  //       console.log('City created: ', response);
-  //       setCity(response.data);
-  //   }).catch((error) => {
-  //       console.log('City create error: ', error);
-  //   });
-  // }
-
-  // useEffect(() => {
-  //   console.log('City: ', city);
-  //   axios.get('http://localhost:3001/latest').then((response) => {
-  //       console.log('City: ', response.data);
-  //       setCity(response.data);
-  //   }).catch((error) => {
-  //       console.log('City error: ', error);
-  //   });
-  // }, [city]);
-
   const [cities, setCities] = useState(null);
 
   useEffect(() => {
@@ -76,7 +55,7 @@ const City = () => {
     }).catch((error) => {
       console.log('City error: ', error);
     });
-  }, [cities]);
+  }, [cities, confirmDialog]);
 
   return (
   /* List of Cities */
@@ -104,7 +83,6 @@ const City = () => {
         className={`flex items-center justify-between p-3 bg-white ${listView ? 'rounded-tr-md rounded-tl-md  sm:rounded-tr-lg sm:rounded-tl-lg' : 'shadow-md rounded-lg sm:rounded-lg'}`}
       >
         <div className="relative ">
-          {/* <label htmlFor="table-search" className="sr-only">Search</label> */}
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg
               aria-hidden="true"
@@ -169,12 +147,12 @@ const City = () => {
       </div>
       {/* List-View Table */}
       {listView && (
-      <CityList cities={cities} handleDelete={handleDelete} />
+      <CityList cities={cities} handleDelete={handleDelete} handleDialog= {handleDialog} /> 
       )}
 
       {/* Grid-View */}
       {!listView && (
-      <CityGrid cities={cities} handleDelete={handleDelete} />
+      <CityGrid cities={cities} handleDelete={handleDelete} handleDialog= {handleDialog} />
       )}
 
       {/* Modal toggle */}
@@ -185,7 +163,7 @@ const City = () => {
             aria-hidden="true"
             className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center justify-center w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full backdrop-filter"
           >
-            <div className="relative w-full h-modal max-w-lg md:h-auto">
+            <div className="relative lg:left-40 w-full h-modal max-w-lg md:h-auto">
               {/* Modal content */}
               <div className="relative bg-white rounded-lg shadow-lg">
                 <button type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" onClick={() => showModal('CLOSE')}>
@@ -202,6 +180,7 @@ const City = () => {
           </div>
         </>
       ) : null}
+      <Dialog message={dialog.message} show={dialog.show} itemId={dialog.itemId} confirmDialog={confirmDialog} />
     </div>
   );
 };

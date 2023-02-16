@@ -7,12 +7,7 @@ import { useEffect } from 'react';
 
 const YUV = () => {
     const fac = new FastAverageColor();
-    // const color = fac.getColorAsync(avatar);
-    // console.log("color: ",color);
-    // console.log("color RGB: ",color.rgb);
     const [color, setColor] = useState(null);
-
-    
 
     const getColor = async (image) => {
         const color = await fac.getColorAsync(image);
@@ -26,7 +21,7 @@ const YUV = () => {
 
     useEffect (() => {
         getColor(avatar);
-    },[color]);
+    },[color, getColor, fac]);
 
   return (
     /* List of motorcycles */

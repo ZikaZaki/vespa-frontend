@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const CityForm = (props) => {
   const { showModal } = props;
@@ -28,17 +28,6 @@ const CityForm = (props) => {
     });
   }
 
-//   function handleChange(event) {
-//     if(event.target.name === 'image') {
-//         setCity({ ...city, [event.target.name]: event.target.files[0] });
-//     }
-//     else{
-
-//         setCity({ ...city, [event.target.name]: event.target.value });
-//     }
-//     const  name  = { ...city, [event.target.name]: event.target.files[0].name };
-//     console.log('City Image Name: ', city );
-// }
   return (
     <div className="px-6 py-6 lg:px-8">
         <h3 className="mb-4 text-2xl text-center font-medium text-gray-900">Create City</h3>
