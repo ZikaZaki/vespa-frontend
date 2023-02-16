@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import avatar from '../../assets/images/avatar.jpg';
 
 const CityGrid = (props) => {
-  const { cities } = props;
+  const { cities, handleDelete, } = props;
 
   return (
   /* CityGrid */
@@ -17,7 +16,9 @@ const CityGrid = (props) => {
             <a href="##">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{city.name}</h5>
             </a>
-            <p className="mb-3 font-normal text-gray-700">{city.description}</p>
+            <p className="mb-3 font-normal text-gray-700">
+              {city.description ? city.description : 'No description'}
+            </p>
             <div className="flex justify-center items-center gap-2">
               <a href="##" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800">
                 <svg
@@ -44,7 +45,9 @@ const CityGrid = (props) => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                 </svg>
               </a>
-              <a href="##" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-red-600">
+              <a
+                href="##"
+                className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-red-600">
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"

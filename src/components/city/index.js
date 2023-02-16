@@ -2,10 +2,36 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import CityList from './CityList';
 import CityGrid from './CityGrid';
+import CityForm from './CityForm';
 
 const City = () => {
   // const [city, setCity] = useState(null);
   const [listView, setListView] = useState(true);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  const showModal = (form) => {
+    if (form.toUpperCase() === 'ADD') {
+      setShowEditModal(false);
+      setShowAddModal(true);
+    } else if (form.toUpperCase() === 'EDIT') {
+      setShowAddModal(false);
+      setShowEditModal(true);
+    } else {
+      setShowAddModal(false);
+      setShowEditModal(false);
+    }
+  };
+
+  function handleDelete(e) {
+    const id = e.target.value;
+    console.log('ID: ', id);
+    axios.delete(`http://localhost:3001/cities/${id}`).then((response) => {
+      console.log('City deleted: ', response);
+    }).catch((error) => {
+      console.log('City delete error: ', error);
+    });
+  }
 
   // function handleSubmit(event) {
   //   event.preventDefault();
@@ -50,16 +76,17 @@ const City = () => {
     }).catch((error) => {
       console.log('City error: ', error);
     });
-  }, []);
+  }, [cities]);
 
   return (
   /* List of Cities */
-    <div className="flex flex-col w-full px-4 pt-6 pb-4 lg:px-6 lg:py-2 h-full">
+    <div className="flex flex-col w-full h-full px-4 pt-6 pb-4 lg:px-6 lg:py-2 overflow-x-hidden">
       <div className="flex justify-between items-center w-full py-6">
         <h1 className="text-gray-800 text-4xl font-bold">Cities</h1>
         <button
           type="button"
           className="inline-flex items-center p-2 bg-blue-600 text-white font-medium text-sm rounded-md border-2 hover:bg-bg_secondary hover:text-blue-600 hover:border-blue-600 focus:outline-none focus:bg-white focus:border-blue-600 focus:text-blue-600"
+          onClick={() => showModal('ADD')}
         >
           <svg
             viewBox="0 0 20 20"
@@ -142,44 +169,41 @@ const City = () => {
       </div>
       {/* List-View Table */}
       {listView && (
-      <CityList cities={cities} />
+      <CityList cities={cities} handleDelete={handleDelete} />
       )}
 
       {/* Grid-View */}
       {!listView && (
-      <CityGrid cities={cities} />
+      <CityGrid cities={cities} handleDelete={handleDelete} />
       )}
 
+      {/* Modal toggle */}
+      {showAddModal || showEditModal ? (
+        <>
+          {/* Main modal */}
+          <div
+            aria-hidden="true"
+            className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center justify-center w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full backdrop-filter"
+          >
+            <div className="relative w-full h-modal max-w-lg md:h-auto">
+              {/* Modal content */}
+              <div className="relative bg-white rounded-lg shadow-lg">
+                <button type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" onClick={() => showModal('CLOSE')}>
+                  <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
+                  <span className="sr-only">Close modal</span>
+                </button>
+                {
+                  showAddModal ? (
+                    <CityForm showModal={showModal} />
+                  ) : null
+                }
+              </div>
+            </div>
+          </div>
+        </>
+      ) : null}
     </div>
   );
 };
 
 export default City;
-
-/*
-<div className="relative flex flex-col w-full px-4 pt-6 pb-4 lg:px-6 lg:py-2 h-auto">
-<h1>City Form</h1>
-<form onSubmit={(e) => handleSubmit(e)}>
-    <label htmlFor="name">Name</label>
-    <input type="text" name="name" id="name" />
-    <br />
-    <label htmlFor="description">Description</label>
-    <textarea name="description" id="description"></textarea>
-    <br />
-    <label htmlFor="image">Image</label>
-    <input type="file" name="image" id="image" />
-    <br />
-
-    <button type="submit">Create City</button>
-</form>
-
-{city && (
-    <div>
-        <h1>{city.id}</h1>
-        <h1>{city.name}</h1>
-        <p>{city.description}</p>
-        <img src={city.image_url} alt={city.name} />
-    </div>
-)}
-</div>
-*/

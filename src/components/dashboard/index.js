@@ -24,7 +24,7 @@ const Dashboard = (props) => {
   // };
 
   return (
-    <div className="relative flex flex-col p-4 w-full h-full ">
+    <div className="relative flex flex-col p-4 w-full h-full overflow-hidden ">
       <Component />
     </div>
   );

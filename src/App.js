@@ -3,10 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import Home from './components/Home';
-import Dashboard from './components/Dashboard/index';
+import Dashboard from './components/dashboard/index';
 import City from './components/city/index';
-import Sidebar from './components/Dashboard/Sidebar';
+import Sidebar from './components/dashboard/Sidebar';
 import Motorcycle from './components/motorcycle/Motorcycle';
+import YUV from './components/YUV';
 
 function App() {
   const [state, setState] = useState({
@@ -88,6 +89,8 @@ function App() {
         <Route exact path="/city" element={<City />} />
         {/* Motorcycle */}
         <Route exact path="/motorcycle" element={<Motorcycle />} />
+
+        <Route exact path="/yuv" element={<YUV />} />
       </Routes>
     </div>
   );
