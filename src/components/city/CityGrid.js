@@ -6,7 +6,7 @@ const CityGrid = (props) => {
 
   return (
   /* CityGrid */
-    <div className="flex items-center gap-5 py-4 flex-wrap">
+    <div className="flex justify-center md:justify-start items-center gap-5 py-4 flex-wrap">
       { cities && cities.map((city) => (
         <div key={city.id} className="max-w-screen-xsm bg-white border border-gray-200 rounded-lg shadow-md">
           <a href="##">
@@ -20,10 +20,11 @@ const CityGrid = (props) => {
               {city.description ? city.description : 'No description'}
             </p>
             <div className="flex justify-center items-center gap-2">
-            <button
+              <button
                 value={city.id}
                 type="button"
-                className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800">
+                className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800"
+              >
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -39,7 +40,8 @@ const CityGrid = (props) => {
               <button
                 value={city.id}
                 type="button"
-                className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800">
+                className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800"
+              >
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -55,12 +57,13 @@ const CityGrid = (props) => {
                 value={city.id}
                 type="button"
                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-red-600"
-                onClick={()=> handleDialog(
+                onClick={() => handleDialog(
                   `Are you sure you want to delete ${city.name}?`,
                   true,
                   city.id,
-                  "",
-                )} >
+                  '',
+                )}
+              >
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -82,6 +85,7 @@ const CityGrid = (props) => {
 
 CityGrid.propTypes = {
   cities: PropTypes.instanceOf(Array).isRequired,
+  handleDialog: PropTypes.func.isRequired,
 };
 
 export default CityGrid;

@@ -37,9 +37,9 @@ const Sidebar = () => {
         </button>
       </div>
       <div
-        className={`relative ${
+        className={`absolute lg:relative ${
           toggle ? 'flex' : 'hidden'
-        } lg:flex lg:w-96 flex-col w-full h-full bg-very_dark_limerick bg-opacity-75 backdrop-blur-sm rounded-lg lg:bg-bg_primary lg:border-md lg:shadow-md lg:drop-shadow-md`}
+        } lg:flex lg:w-96 flex-col w-full h-full z-50 bg-very_dark_limerick bg-opacity-75 backdrop-blur-sm rounded-lg lg:bg-bg_primary lg:border-md lg:shadow-md lg:drop-shadow-md`}
       >
         {/* Menu-Burger & Logo MainContainer */}
         <div className="relative flex flex-row lg:items-center p-4 lg:p-6 w-full h-24 rounded-md">

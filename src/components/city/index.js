@@ -9,10 +9,14 @@ const City = () => {
   const [listView, setListView] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [dialog, setDialog] = useState({message: "", show: false, itemId: null, action: ""});
+  const [dialog, setDialog] = useState({
+    message: '', show: false, itemId: null, action: '',
+  });
 
   const handleDialog = (message, show, itemId, action) => {
-    setDialog({message, show, itemId, action});
+    setDialog({
+      message, show, itemId, action,
+    });
   };
 
   const handleDelete = (id) => {
@@ -28,9 +32,10 @@ const City = () => {
     if (action.toUpperCase() === 'YES') {
       handleDelete(dialog.itemId);
     }
-    setDialog({message: "", show: false, itemId: null, action: ""});
+    setDialog({
+      message: '', show: false, itemId: null, action: '',
+    });
   };
-
 
   const showModal = (form) => {
     if (form.toUpperCase() === 'ADD') {
@@ -59,8 +64,8 @@ const City = () => {
 
   return (
   /* List of Cities */
-    <div className="flex flex-col w-full h-full px-4 pt-6 pb-4 lg:px-6 lg:py-2 overflow-x-hidden">
-      <div className="flex justify-between items-center w-full py-6">
+    <div className="flex flex-col w-full bg-bg_secondary px-4 py-2 lg:px-6 overflow-x-hidden">
+      <div className="flex justify-between items-center w-full pb-4 md:py-6">
         <h1 className="text-gray-800 text-4xl font-bold">Cities</h1>
         <button
           type="button"
@@ -147,12 +152,12 @@ const City = () => {
       </div>
       {/* List-View Table */}
       {listView && (
-      <CityList cities={cities} handleDelete={handleDelete} handleDialog= {handleDialog} /> 
+      <CityList cities={cities} handleDelete={handleDelete} handleDialog={handleDialog} />
       )}
 
       {/* Grid-View */}
       {!listView && (
-      <CityGrid cities={cities} handleDelete={handleDelete} handleDialog= {handleDialog} />
+      <CityGrid cities={cities} handleDelete={handleDelete} handleDialog={handleDialog} />
       )}
 
       {/* Modal toggle */}
@@ -180,7 +185,12 @@ const City = () => {
           </div>
         </>
       ) : null}
-      <Dialog message={dialog.message} show={dialog.show} itemId={dialog.itemId} confirmDialog={confirmDialog} />
+      <Dialog
+        message={dialog.message}
+        show={dialog.show}
+        itemId={dialog.itemId}
+        confirmDialog={confirmDialog}
+      />
     </div>
   );
 };
