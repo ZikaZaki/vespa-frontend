@@ -5,7 +5,7 @@ import Home from './components/Home';
 import Dashboard from './components/dashboard/index';
 import City from './components/city/index';
 import Sidebar from './components/dashboard/Sidebar';
-import Motorcycle from './components/motorcycle/Motorcycle';
+import Motorcycle from './components/motorcycle/index';
 import YUV from './components/YUV';
 
 function App() {
@@ -85,7 +85,7 @@ function App() {
           )}
         />
         {/* City */}
-        <Route exact path="/city" element={<City />} />
+        <Route exact path="/locations" element={<City />} />
         {/* Motorcycle */}
         <Route exact path="/motorcycle" element={<Motorcycle />} />
 

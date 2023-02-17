@@ -1,9 +1,11 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const CityForm = (props) => {
   const { showModal } = props;
+  // Image File Name
+  const [fileName, setFileName] = useState('No file chosen');
 
   function submitToAPI(data) {
     axios.post('http://localhost:3001/cities', data, {
@@ -29,7 +31,7 @@ const CityForm = (props) => {
 
   return (
     <div className="px-6 py-6 lg:px-8">
-      <h3 className="mb-4 text-2xl text-center font-medium text-gray-900">Create City</h3>
+      <h3 className="mb-4 text-2xl text-center font-medium text-gray-900">Create Location</h3>
       <form className="space-y-6" onSubmit={(e) => handleSubmit(e)}>
         <div>
           <label
@@ -53,18 +55,18 @@ const CityForm = (props) => {
             <textarea
               id="description"
               name="description"
-              placeholder="city description..."
+              placeholder="description"
               className="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-dark_limerick focus:border-very_dark_limerick block w-full p-2.5"
               rows={3}
               defaultValue=""
             />
           </label>
           <p className="mt-2 text-sm text-gray-500">
-            Brief description for your city.
+            Brief description for the location.
           </p>
         </div>
         <div>
-          <span className="block mb-2 text-sm font-medium text-gray-900">City photo</span>
+          <span className="block mb-2 text-sm font-medium text-gray-900">Photo</span>
           <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 p-2 lg:p-4">
             <div className="space-y-1 text-center">
               <svg
@@ -86,13 +88,16 @@ const CityForm = (props) => {
                   htmlFor="image"
                   className="relative flex flex-col justify-center items-center cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                 >
-                  <span>Upload a file</span>
+                  <span className="normal-case">{fileName}</span>
                   <input
                     id="image"
                     name="image"
                     type="file"
-                    className="file:opacity-0 file:cursor-pointer sr-only md:not-sr-only"
+                    className="sr-only"
                     accept="image/*"
+                    onChange={({ target: { files } }) => {
+                      setFileName(files[0].name);
+                    }}
                   />
                 </label>
               </div>

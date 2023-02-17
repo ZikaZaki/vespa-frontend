@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import CityList from './CityList';
-import CityGrid from './CityGrid';
-import CityForm from './CityForm';
+import MotorcycleList from './MotorcycleList';
+import MotorcycleGrid from './MotorcycleGrid';
+import MotorcycleForm from './MotorcycleForm';
 import Dialog from '../Dialog';
 
-const City = () => {
+const Motorcycle = () => {
   const [listView, setListView] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -21,10 +21,10 @@ const City = () => {
 
   const handleDelete = (id) => {
     console.log('ID: ', id);
-    axios.delete(`http://localhost:3001/cities/${id}`).then((response) => {
-      console.log('City deleted: ', response);
+    axios.delete(`http://localhost:3001/motorcycles/${id}`).then((response) => {
+      console.log('Motorcycle deleted: ', response);
     }).catch((error) => {
-      console.log('City delete error: ', error);
+      console.log('Motorcycle delete error: ', error);
     });
   };
 
@@ -50,26 +50,26 @@ const City = () => {
     }
   };
 
-  const [cities, setCities] = useState(null);
+  const [motorcycles, setMotorcycles] = useState(null);
 
   useEffect(() => {
-    console.log('Cities: ', cities);
-    axios.get('http://localhost:3001/cities').then((response) => {
-      console.log('Citieeees: ', response.data);
-      setCities(response.data);
+    console.log('Motorcycles: ', motorcycles);
+    axios.get('http://localhost:3001/motorcycles').then((response) => {
+      console.log('motorcycleees: ', response.data);
+      setMotorcycles(response.data);
     }).catch((error) => {
-      console.log('City error: ', error);
+      console.log('Motorcycle error: ', error);
     });
-  }, [cities, confirmDialog]);
+}, [motorcycles, confirmDialog]);
 
   return (
-  /* List of Cities */
+  /* List of Motorcycles */
     <div className="flex flex-col w-full bg-bg_secondary px-4 py-2 lg:px-6 overflow-x-hidden">
       <div className="flex justify-between items-center w-full pb-4 md:py-6">
-        <h1 className="text-gray-800 text-4xl font-bold">Locations</h1>
+        <h1 className="text-gray-800 text-4xl font-bold">Bikes</h1>
         <button
           type="button"
-          className="inline-flex items-center p-2 bg-blue-600 text-white font-medium text-sm rounded-md border-2 hover:bg-bg_secondary hover:text-blue-600 hover:border-blue-600 focus:outline-none focus:bg-white focus:border-blue-600 focus:text-blue-600"
+          className="inline-flex items-center py-2 px-4 bg-blue-600 text-white font-medium text-sm rounded-md border-2 hover:bg-bg_secondary hover:text-blue-600 hover:border-blue-600 focus:outline-none focus:bg-white focus:border-blue-600 focus:text-blue-600"
           onClick={() => showModal('ADD')}
         >
           <svg
@@ -80,7 +80,7 @@ const City = () => {
           >
             <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
           </svg>
-          New Location
+          New Bike
         </button>
       </div>
       {/* SearchBar with Grid & List Buttons */}
@@ -104,10 +104,10 @@ const City = () => {
             </svg>
           </div>
           <input
-            id="table-search-cities"
+            id="table-search-bikes"
             name="table-search"
             type="text"
-            placeholder="Search for locations..."
+            placeholder="Search for bikes..."
             className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-auto lg:w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
@@ -152,12 +152,12 @@ const City = () => {
       </div>
       {/* List-View Table */}
       {listView && (
-      <CityList cities={cities} handleDelete={handleDelete} handleDialog={handleDialog} />
+      <MotorcycleList motorcycles={motorcycles} handleDelete={handleDelete} handleDialog={handleDialog} />
       )}
 
       {/* Grid-View */}
       {!listView && (
-      <CityGrid cities={cities} handleDelete={handleDelete} handleDialog={handleDialog} />
+      <MotorcycleGrid motorcycles={motorcycles} handleDelete={handleDelete} handleDialog={handleDialog} />
       )}
 
       {/* Modal toggle */}
@@ -168,7 +168,7 @@ const City = () => {
             aria-hidden="true"
             className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center justify-center w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full backdrop-filter"
           >
-            <div className="relative lg:left-40 w-full h-modal max-w-lg md:h-auto">
+            <div className="relative lg:left-40 w-full h-modal max-w-xl md:h-auto">
               {/* Modal content */}
               <div className="relative bg-white rounded-lg shadow-lg">
                 <button type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" onClick={() => showModal('CLOSE')}>
@@ -177,7 +177,7 @@ const City = () => {
                 </button>
                 {
                   showAddModal ? (
-                    <CityForm showModal={showModal} />
+                    <MotorcycleForm showModal={showModal} />
                   ) : null
                 }
               </div>
@@ -195,4 +195,4 @@ const City = () => {
   );
 };
 
-export default City;
+export default Motorcycle;
