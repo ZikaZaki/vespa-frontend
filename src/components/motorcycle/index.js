@@ -60,7 +60,7 @@ const Motorcycle = () => {
     }).catch((error) => {
       console.log('Motorcycle error: ', error);
     });
-}, [motorcycles, confirmDialog]);
+  }, [motorcycles, confirmDialog]);
 
   return (
   /* List of Motorcycles */
@@ -152,12 +152,20 @@ const Motorcycle = () => {
       </div>
       {/* List-View Table */}
       {listView && (
-      <MotorcycleList motorcycles={motorcycles} handleDelete={handleDelete} handleDialog={handleDialog} />
+      <MotorcycleList
+        motorcycles={motorcycles}
+        handleDelete={handleDelete}
+        handleDialog={handleDialog}
+      />
       )}
 
       {/* Grid-View */}
       {!listView && (
-      <MotorcycleGrid motorcycles={motorcycles} handleDelete={handleDelete} handleDialog={handleDialog} />
+      <MotorcycleGrid
+        motorcycles={motorcycles}
+        handleDelete={handleDelete}
+        handleDialog={handleDialog}
+      />
       )}
 
       {/* Modal toggle */}

@@ -37,8 +37,8 @@ const MotorcycleForm = (props) => {
     <div className="p-4 md:p-6">
       <h3 className="mb-4 text-2xl text-center font-medium text-gray-900">Create Bike</h3>
       <form className="" onSubmit={(e) => handleSubmit(e)}>
-        <div class="flex justify-center items-center">
-          <div class="flex flex-col w-3/5 ">
+        <div className="flex justify-center items-center">
+          <div className="flex flex-col w-3/5 ">
             <div className="w-full px-3 mb-2">
               <label
                 htmlFor="model_no"
@@ -58,7 +58,8 @@ const MotorcycleForm = (props) => {
             <div className="w-full px-3 mb-2">
               <label
                 htmlFor="production_date"
-                className="block uppercase tracking-wide mb-2 text-sm font-medium text-gray-900">
+                className="block uppercase tracking-wide mb-2 text-sm font-medium text-gray-900"
+              >
                 Production Date
                 <input
                   type="date"
@@ -72,7 +73,9 @@ const MotorcycleForm = (props) => {
           </div>
           <div className="w-2/5 md:w-2/5 px-3 mb-2">
             <label
-              className="block uppercase tracking-wide mb-2 text-sm font-medium text-gray-900">
+              htmlFor="image"
+              className="block uppercase tracking-wide mb-2 text-sm font-medium text-gray-900"
+            >
               Photo
               <div className="flex justify-center mt-1 rounded-md border-2 border-dashed border-gray-300 p-2 lg:p-4">
                 <div className="text-center cursor-pointer">
@@ -132,7 +135,7 @@ const MotorcycleForm = (props) => {
           </label>
         </div>
 
-        <div class="flex flex-wrap">
+        <div className="flex flex-wrap">
           <div className="w-full md:w-1/2 px-3 mb-2">
             <label
               htmlFor="finance_fee"
@@ -164,7 +167,7 @@ const MotorcycleForm = (props) => {
             </label>
           </div>
         </div>
-        
+
         <div className="w-full  px-3 mb-2">
           <label htmlFor="description" className="block uppercase tracking-wide mb-2 text-sm font-medium text-gray-900">
             Description
