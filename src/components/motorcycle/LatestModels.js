@@ -38,7 +38,8 @@ const LatestModels = () => {
         <Swiper
           spaceBetween={30}
           grabCursor={false}
-          centeredSlides
+          centeredSlides={false}
+          centerInsufficientSlides
           slidesPerView="auto"
           pagination={{ el: '.swiper-pagination', clickable: true }}
           navigation={{
