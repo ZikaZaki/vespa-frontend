@@ -1,12 +1,14 @@
 import React from 'react';
 // import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Sidebar from './Sidebar';
 // import axios from 'axios';
 
 const Dashboard = (props) => {
   const {
     // loggedInStatus,
-    // handleLogout,
+    handleLogout: handleLogout,
+    user: user,
     component: Component,
   } = props;
   // const navigate = useNavigate();
@@ -24,9 +26,12 @@ const Dashboard = (props) => {
   // };
 
   return (
-    <div className="relative flex flex-col p-4 w-full h-full overflow-hidden ">
+    // <div className="relative flex flex-col p-4 w-full h-full overflow-hidden ">
+    <>
+      <Sidebar handleLogout={handleLogout} user={user} />
       <Component />
-    </div>
+    </>
+    // </div>
   );
 };
 

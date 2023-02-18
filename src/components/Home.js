@@ -11,7 +11,7 @@ const Home = (props) => {
   const navigate = useNavigate();
   const handleSuccessfulAuth = (data) => {
     handleLogin(data);
-    navigate('/dashboard');
+    navigate('/models');
   };
 
   const [showLogin, setShowLogin] = useState(false);

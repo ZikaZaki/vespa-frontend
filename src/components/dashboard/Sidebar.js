@@ -4,7 +4,8 @@ import SearchForm from './SearchForm';
 import SocialLinks from './SocialLinks';
 import { ReactComponent as VespaLogo } from '../../assets/svg/logo.svg';
 
-const Sidebar = () => {
+const Sidebar = (props) => {
+  const { handleLogout, user } = props;
   const [toggle, setToggle] = useState(false);
   return (
     <>
@@ -39,7 +40,7 @@ const Sidebar = () => {
       <div
         className={`absolute lg:relative ${
           toggle ? 'flex' : 'hidden'
-        } lg:flex lg:w-96 flex-col w-full h-full z-30 bg-very_dark_limerick bg-opacity-75 backdrop-blur-sm rounded-lg lg:bg-bg_primary lg:border-md lg:shadow-md lg:drop-shadow-md`}
+        } lg:flex lg:max-w-[20rem] flex-col w-full h-full z-30 bg-very_dark_limerick bg-opacity-75 backdrop-blur-sm rounded-lg lg:bg-bg_primary lg:border-md lg:shadow-md lg:drop-shadow-md`}
       >
         {/* Menu-Burger & Logo MainContainer */}
         <div className="relative flex flex-row lg:items-center p-4 lg:p-6 w-full h-24 rounded-md">
@@ -86,10 +87,10 @@ const Sidebar = () => {
           {/* Profile-Name & Waving-Icon  */}
           <div className="p-2 lg:p-2">
             <p className="text-lg font-semibold text-gray-200 lg:text-gray-900">
-              Hello, ZikaZaki👋
+              Hello, {user.username && user.username  }👋
             </p>
             <p className="text-sm text-gray-300 lg:text-gray-600">
-              zikazaki@gmail.com
+              { user.email && user.email }
             </p>
           </div>
         </div>
@@ -113,12 +114,15 @@ const Sidebar = () => {
               >
                 Brands
               </a>
-              <a
+              { user.admin ? (
+                <a
                 href="http://localhost:3000/locations"
                 className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
               >
                 Locations
               </a>
+              ): null}
+              
               <a
                 href="##"
                 className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
@@ -140,6 +144,7 @@ const Sidebar = () => {
             </div>
             <a
               href="##"
+              onClick={() => handleLogout()}
               className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
             >
               Logout
