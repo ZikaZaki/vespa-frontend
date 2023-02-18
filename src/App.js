@@ -8,6 +8,7 @@ import City from './components/city/index';
 import Motorcycle from './components/motorcycle/index';
 import PageNotFound from './components/PageNotFound';
 import LatestModels from './components/motorcycle/LatestModels';
+import MotorcycleDetails from './components/motorcycle/MotorcycleDetails';
 
 function App() {
   const navigate = useNavigate();
@@ -151,6 +152,31 @@ function App() {
         <Route
           exact
           path="/latest"
+          element={(
+            <Dashboard
+              handleLogout={handleLogout}
+              loggedInStatus={state.loggedInStatus}
+              user={state.user}
+              component={LatestModels}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/details"
+          element={(
+            <Dashboard
+              handleLogout={handleLogout}
+              loggedInStatus={state.loggedInStatus}
+              user={state.user}
+              component={MotorcycleDetails}
+            />
+          )}
+        />
+
+        <Route
+          exact
+          path="/details/:id"
           element={(
             <Dashboard
               handleLogout={handleLogout}
