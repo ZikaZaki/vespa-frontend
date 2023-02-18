@@ -4,9 +4,8 @@ import axios from 'axios';
 import Home from './components/Home';
 import Dashboard from './components/dashboard/index';
 import City from './components/city/index';
-import Sidebar from './components/dashboard/Sidebar';
+// import Sidebar from './components/dashboard/Sidebar';
 import Motorcycle from './components/motorcycle/index';
-import YUV from './components/YUV';
 import PageNotFound from './components/PageNotFound';
 import LatestModels from './components/motorcycle/LatestModels';
 
@@ -87,12 +86,24 @@ function App() {
                   handleLogout={handleLogout}
                   loggedInStatus={state.loggedInStatus}
                   user={state.user}
-                  component={Motorcycle}
+                  component={LatestModels}
                 />
               }
             />
             {state.user.admin ?
               <>
+                <Route
+                  exact
+                  path="/bikes"
+                  element={
+                    <Dashboard
+                      handleLogout={handleLogout}
+                      loggedInStatus={state.loggedInStatus}
+                      user={state.user}
+                      component={Motorcycle}
+                    />
+                  }
+                />
                 <Route
                   exact
                   path="/locations"

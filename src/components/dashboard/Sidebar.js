@@ -40,7 +40,7 @@ const Sidebar = (props) => {
       <div
         className={`absolute lg:relative ${
           toggle ? 'flex' : 'hidden'
-        } lg:flex lg:max-w-[20rem] flex-col w-full h-full z-30 bg-very_dark_limerick bg-opacity-75 backdrop-blur-sm rounded-lg lg:bg-bg_primary lg:border-md lg:shadow-md lg:drop-shadow-md`}
+        } lg:flex lg:max-w-[18rem] flex-col w-full h-full z-30 bg-very_dark_limerick bg-opacity-75 backdrop-blur-sm rounded-lg lg:bg-bg_primary lg:border-md lg:shadow-md lg:drop-shadow-md`}
       >
         {/* Menu-Burger & Logo MainContainer */}
         <div className="relative flex flex-row lg:items-center p-4 lg:p-6 w-full h-24 rounded-md">
@@ -79,7 +79,7 @@ const Sidebar = (props) => {
         </div>
         <hr className="hidden lg:block h-[3px] bg-gray-300" />
         {/* Profile-Container  */}
-        <div className="relative flex flex-row flex-wrap items-center lg:flex-row px-4 py-6 lg:p-6 w-full h-auto">
+        <div className="relative flex flex-row flex-wrap justify-center items-center lg:flex-row px-4 py-6 w-full h-auto">
           {/* Profile-Photo  */}
           <div className="w-14 h-14 rounded-full overflow-hidden outline-none ring-2 ring-lime-200">
             <img src={avatar} alt="avatar" className="w-14 h-14 object-cover" />
@@ -103,26 +103,31 @@ const Sidebar = (props) => {
           <div className="flex flex-col w-full h-full justify-between gap-2 text-xl lg:text-lg font-bold text-gray-200 lg:text-gray-900 uppercase">
             <div className="flex flex-col w-full gap-2">
               <a
-                href="http://localhost:3000/motorcycle"
+                href="http://localhost:3000/models"
                 className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
               >
                 Models
               </a>
+              { user.admin ? <>
+                <a
+                  href="http://localhost:3000/bikes"
+                  className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
+                >
+                  Bikes
+                </a>
+                <a
+                  href="http://localhost:3000/locations"
+                  className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
+                >
+                  Locations
+                </a>
+              </>: null}
               <a
                 href="##"
                 className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
               >
-                Brands
+                My Reservations
               </a>
-              { user.admin ? (
-                <a
-                href="http://localhost:3000/locations"
-                className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
-              >
-                Locations
-              </a>
-              ): null}
-              
               <a
                 href="##"
                 className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
@@ -134,12 +139,6 @@ const Sidebar = (props) => {
                 className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
               >
                 Shopping
-              </a>
-              <a
-                href="##"
-                className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
-              >
-                My Reservations
               </a>
             </div>
             <a
