@@ -28,7 +28,7 @@ const LatestModels = () => {
   return (
   /* List of Latest Models */
     <div className="flex flex-col w-full h-full bg-bg_secondary p-4 lg:p-6 overflow-x-hidden">
-      <div className="flex flex-col w-full p-2 lg:p-4 justify-center items-center">
+      <div className="flex flex-col w-full p-2 lg:p-4 text-center justify-center items-center">
         {/* Title */}
         <h1 className="text-gray-800 text-4xl font-extrabold">LATEST MODELS</h1>
         <p className="text-gray-400 text-base font-semibold">Please select a Vespa Model</p>
