@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import avatar from '../../assets/images/avatar.jpg';
 import SearchForm from './SearchForm';
 import SocialLinks from './SocialLinks';
@@ -87,7 +88,10 @@ const Sidebar = (props) => {
           {/* Profile-Name & Waving-Icon  */}
           <div className="p-2 lg:p-2">
             <p className="text-lg font-semibold text-gray-200 lg:text-gray-900">
-              Hello, {user.username && user.username  }👋
+              Hello,
+              {' '}
+              {user.username && user.username }
+              👋
             </p>
             <p className="text-sm text-gray-300 lg:text-gray-600">
               { user.email && user.email }
@@ -108,20 +112,22 @@ const Sidebar = (props) => {
               >
                 Models
               </a>
-              { user.admin ? <>
-                <a
-                  href="http://localhost:3000/bikes"
-                  className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
-                >
-                  Bikes
-                </a>
-                <a
-                  href="http://localhost:3000/locations"
-                  className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
-                >
-                  Locations
-                </a>
-              </>: null}
+              { user.admin ? (
+                <>
+                  <a
+                    href="http://localhost:3000/bikes"
+                    className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
+                  >
+                    Bikes
+                  </a>
+                  <a
+                    href="http://localhost:3000/locations"
+                    className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
+                  >
+                    Locations
+                  </a>
+                </>
+              ) : null}
               <a
                 href="##"
                 className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
@@ -155,6 +161,15 @@ const Sidebar = (props) => {
       </div>
     </>
   );
+};
+
+Sidebar.propTypes = {
+  handleLogout: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    username: PropTypes.string,
+    email: PropTypes.string,
+    admin: PropTypes.bool,
+  }).isRequired,
 };
 
 export default Sidebar;

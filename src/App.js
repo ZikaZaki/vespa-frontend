@@ -37,7 +37,7 @@ function App() {
     ).then((response) => {
       // console.log('Logged in? ', response);
       // if (response.data.logged_in && state.loggedInStatus === 'NOT_LOGGED_IN') {
-        if (response.data.logged_in) {
+      if (response.data.logged_in) {
         setState({
           loggedInStatus: 'LOGGED_IN',
           user: response.data.user,
@@ -68,91 +68,97 @@ function App() {
         <Route
           exact
           path="/"
-          element={
+          element={(
             <Home
               handleLogin={handleLogin}
               handleLogout={handleLogout}
               loggedInStatus={state.loggedInStatus}
             />
-          }
+          )}
         />
-        {state.loggedInStatus === 'LOGGED_IN' ? 
-          <>
-            <Route
-              exact
-              path="/models"
-              element={
-                <Dashboard
-                  handleLogout={handleLogout}
-                  loggedInStatus={state.loggedInStatus}
-                  user={state.user}
-                  component={LatestModels}
-                />
-              }
-            />
-            {state.user.admin ?
-              <>
-                <Route
-                  exact
-                  path="/bikes"
-                  element={
-                    <Dashboard
-                      handleLogout={handleLogout}
-                      loggedInStatus={state.loggedInStatus}
-                      user={state.user}
-                      component={Motorcycle}
+        {state.loggedInStatus === 'LOGGED_IN'
+          ? (
+            <>
+              <Route
+                exact
+                path="/models"
+                element={(
+                  <Dashboard
+                    handleLogout={handleLogout}
+                    loggedInStatus={state.loggedInStatus}
+                    user={state.user}
+                    component={LatestModels}
+                  />
+              )}
+              />
+              {state.user.admin
+                ? (
+                  <>
+                    <Route
+                      exact
+                      path="/bikes"
+                      element={(
+                        <Dashboard
+                          handleLogout={handleLogout}
+                          loggedInStatus={state.loggedInStatus}
+                          user={state.user}
+                          component={Motorcycle}
+                        />
+                  )}
                     />
-                  }
-                />
-                <Route
-                  exact
-                  path="/locations"
-                  element={
-                    <Dashboard
-                      handleLogout={handleLogout}
-                      loggedInStatus={state.loggedInStatus}
-                      user={state.user}
-                      component={City}
+                    <Route
+                      exact
+                      path="/locations"
+                      element={(
+                        <Dashboard
+                          handleLogout={handleLogout}
+                          loggedInStatus={state.loggedInStatus}
+                          user={state.user}
+                          component={City}
+                        />
+                  )}
                     />
-                  }
-                />
-              </>
-            : <>
-                <Route
-                  exact
-                  path="/locations"
-                  element={
-                    <Dashboard
-                      handleLogout={handleLogout}
-                      loggedInStatus={state.loggedInStatus}
-                      user={state.user}
-                      component={PageNotFound}
+                  </>
+                )
+                : (
+                  <>
+                    <Route
+                      exact
+                      path="/locations"
+                      element={(
+                        <Dashboard
+                          handleLogout={handleLogout}
+                          loggedInStatus={state.loggedInStatus}
+                          user={state.user}
+                          component={PageNotFound}
+                        />
+                  )}
                     />
-                  }
-                />
-              </> 
-            }
-          </>
-        : <>
-            <Route
-              exact
-              path="/models"
-              element={PageNotFound}
-            />
-          </>
-        }
+                  </>
+                )}
+            </>
+          )
+          : (
+            <>
+              <Route
+                exact
+                path="/models"
+                element={PageNotFound}
+              />
+            </>
+          )}
 
         <Route
           exact
           path="/latest"
-          element={
+          element={(
             <Dashboard
               handleLogout={handleLogout}
               loggedInStatus={state.loggedInStatus}
               user={state.user}
               component={LatestModels}
             />
-          }
+          )}
         />
       </Routes>
     </div>

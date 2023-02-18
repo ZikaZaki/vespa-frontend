@@ -7,8 +7,8 @@ import Sidebar from './Sidebar';
 const Dashboard = (props) => {
   const {
     // loggedInStatus,
-    handleLogout: handleLogout,
-    user: user,
+    handleLogout,
+    user,
     component: Component,
   } = props;
   // const navigate = useNavigate();
@@ -36,9 +36,13 @@ const Dashboard = (props) => {
 };
 
 Dashboard.propTypes = {
-  // loggedInStatus: PropTypes.string.isRequired,
-  // handleLogout: PropTypes.func.isRequired,
   component: PropTypes.func.isRequired,
+  handleLogout: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    username: PropTypes.string,
+    email: PropTypes.string,
+    admin: PropTypes.bool,
+  }).isRequired,
 };
 
 export default Dashboard;
