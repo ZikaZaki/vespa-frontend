@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import axios from 'axios';
 import Registration from './auth/Registration';
 import Login from './auth/Login';
 import SearchIcon from '../assets/svg/search-icon.svg';

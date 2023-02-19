@@ -1,13 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
-// import rocketsReducer, { fetchRockets } from './rockets/rockets';
-// import dragonsReducer, { fetchDragons } from './dragons/dragons';
-// import missionsReducer, { fetchMissions } from './missions/missions';
 
 const rootReducer = combineReducers({
-//   rockets: rocketsReducer,
-//   dragons: dragonsReducer,
-//   missions: missionsReducer,
+  // motorcycles: motorcyclesReducer,
 });
 
 const store = configureStore({
@@ -15,6 +10,6 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
-// export { fetchRockets, fetchDragons, fetchMissions };
+// export { fetchMotorcycles };
 
 export default store;

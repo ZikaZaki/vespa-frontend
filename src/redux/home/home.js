@@ -1,21 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Dragons API
-const dragonsURL = 'https://api.spacexdata.com/v3/dragons';
+// Motorcycles API
+const motorcyclesURL = 'http://localhost:3001/motorcycles';
 
 // Actions
-const GET_DRAGONS = 'travelers-hub/dragons/getDragons';
+const GET_MOTORCYCLES = 'vespa-app/motorcycles/getMotorcycles';
 
 // Initial State
 const initialState = [];
 
 // Creating the thunk for all actions
-export const fetchDragons = createAsyncThunk(
-  GET_DRAGONS,
+export const fetchMotorcycles = createAsyncThunk(
+  GET_MOTORCYCLES,
   async () => {
     try {
-      const response = await axios.get(dragonsURL);
+      const response = await axios.get(motorcyclesURL);
       return response.data;
     } catch (error) {
       return error;
@@ -24,32 +24,34 @@ export const fetchDragons = createAsyncThunk(
 );
 
 // Creating the slice
-export const dragonsSlice = createSlice({
-  name: 'dragons',
+export const motorcyclesSlice = createSlice({
+  name: 'motorcycles',
   initialState,
   reducers: {
-    toggleDragon(state, action) {
-      const dragon = state.find((dragon) => dragon.id === action.payload);
-      if (dragon) {
-        dragon.reserved = !dragon.reserved;
+    toggleMotorcycle(state, action) {
+      const motor = state.find((motor) => motor.id === action.payload);
+      if (motor) {
+        motor.reserved = !motor.reserved;
       }
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchDragons.fulfilled, (state, action) => {
-        const dragons = action.payload.map((dragon) => ({
-          id: dragon.id,
-          name: dragon.name,
-          description: dragon.description,
-          image: dragon.id === 'dragon1' ? dragon.flickr_images[1] : dragon.flickr_images[0],
-          reserved: false,
+      .addCase(fetchMotorcycles.fulfilled, (state, action) => {
+        const motors = action.payload.map((motor) => ({
+          id: motor.id,
+          name: motor.name,
+          model_no: motor.model_no,
+          finance_fee: motor.finance_fee,
+          purchase_fee: motor.purchase_fee,
+          description: motor.description,
+          image: motor.id === 'motorcycle1' ? motor.flickr_images[1] : motor.flickr_images[0],
         }));
-        return dragons;
+        return motors;
       });
   },
 });
 
-export const { toggleDragon } = dragonsSlice.actions;
+export const { toggleMotorcycle } = motorcyclesSlice.actions;
 // Exporting the reducer
-export default dragonsSlice.reducer;
+export default motorcyclesSlice.reducer;

@@ -20,11 +20,10 @@ const City = () => {
   };
 
   const handleDelete = (id) => {
-    console.log('ID: ', id);
     axios.delete(`http://localhost:3001/cities/${id}`).then((response) => {
-      console.log('City deleted: ', response);
+      alert('City deleted successfully: ', response);
     }).catch((error) => {
-      console.log('City delete error: ', error);
+      alert('City delete error: ', error);
     });
   };
 
@@ -53,12 +52,10 @@ const City = () => {
   const [cities, setCities] = useState(null);
 
   useEffect(() => {
-    console.log('Cities: ', cities);
     axios.get('http://localhost:3001/cities').then((response) => {
-      console.log('Citieeees: ', response.data);
       setCities(response.data);
     }).catch((error) => {
-      console.log('City error: ', error);
+      alert('Error fetching data from the server: ', error);
     });
   }, [cities, confirmDialog]);
 

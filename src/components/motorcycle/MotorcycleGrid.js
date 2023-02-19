@@ -11,8 +11,7 @@ const MotorcycleGrid = (props) => {
     try {
       navigate(`/motorcycles/${motor.id}`, { state: { motor } });
     } catch (error) {
-      // handle rejected Promise/errors/etc.
-      console.log(error);
+      alert('Error fetching data from server', error);
     }
   };
 

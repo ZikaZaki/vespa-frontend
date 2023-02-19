@@ -4,7 +4,6 @@ import Sidebar from './Sidebar';
 
 const Dashboard = (props) => {
   const {
-    // loggedInStatus,
     handleLogout,
     user,
     component: Component,

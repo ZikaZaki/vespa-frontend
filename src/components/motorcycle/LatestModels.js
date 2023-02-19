@@ -21,18 +21,15 @@ const LatestModels = () => {
     try {
       navigate(`/motorcycles/${motor.id}`, { state: { motor } });
     } catch (error) {
-      // handle rejected Promise/errors/etc.
-      console.log(error);
+      alert('Error fetching data from server', error);
     }
   };
 
   useEffect(() => {
-    console.log('Motorcycles: ', motorcycles);
     axios.get('http://localhost:3001/motorcycles').then((response) => {
-      console.log('motorcycleees: ', response.data);
       setMotorcycles(response.data);
     }).catch((error) => {
-      console.log('Motorcycle error: ', error);
+      alert('Error fetching data from server', error);
     });
   }, []);
 

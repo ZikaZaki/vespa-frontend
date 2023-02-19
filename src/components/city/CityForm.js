@@ -13,9 +13,9 @@ const CityForm = (props) => {
         'Content-Type': 'multipart/form-data',
       },
     }).then((response) => {
-      console.log('City created: ', response);
+      alert('City created: ', response);
     }).catch((error) => {
-      console.log('City create error: ', error);
+      alert('Error creating city', error);
     });
   }
 

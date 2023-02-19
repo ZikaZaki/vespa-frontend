@@ -13,9 +13,9 @@ const MotorcycleForm = (props) => {
         'Content-Type': 'multipart/form-data',
       },
     }).then((response) => {
-      console.log('Motorcycle created: ', response);
+      alert('Motorcycle created successfully', response);
     }).catch((error) => {
-      console.log('Motorcycle create error: ', error);
+      alert('Motorcycle create error: ', error);
     });
   }
 

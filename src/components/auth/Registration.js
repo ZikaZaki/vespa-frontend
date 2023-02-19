@@ -44,7 +44,6 @@ export default class Registration extends Component {
     },
     { withCredentials: true }).then((response) => {
       const { handleSuccessfulAuth } = this.props;
-      // console.log('Registration response: ', response);
       if (response.data.status === 'created') {
         handleSuccessfulAuth(response.data);
       } else {
@@ -53,7 +52,7 @@ export default class Registration extends Component {
         });
       }
     }).catch((error) => {
-      console.log('Registration error: ', registrationErrors, error);
+      alert('Registration error: ', registrationErrors, error);
     });
     event.preventDefault();
   }

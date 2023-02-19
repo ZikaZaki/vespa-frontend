@@ -22,9 +22,7 @@ const Motorcycle = () => {
   const handleDelete = (id) => {
     console.log('ID: ', id);
     axios.delete(`http://localhost:3001/motorcycles/${id}`).then((response) => {
-      console.log('Motorcycle deleted: ', response);
     }).catch((error) => {
-      console.log('Motorcycle delete error: ', error);
     });
   };
 
@@ -53,12 +51,10 @@ const Motorcycle = () => {
   const [motorcycles, setMotorcycles] = useState(null);
 
   useEffect(() => {
-    console.log('Motorcycles: ', motorcycles);
     axios.get('http://localhost:3001/motorcycles').then((response) => {
-      console.log('motorcycleees: ', response.data);
       setMotorcycles(response.data);
     }).catch((error) => {
-      console.log('Motorcycle error: ', error);
+      alert('Error fetching data from server', error);
     });
   }, [motorcycles, confirmDialog]);
 

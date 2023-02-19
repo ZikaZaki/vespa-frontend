@@ -9,7 +9,7 @@ import PageNotFound from './components/PageNotFound';
 import LatestModels from './components/motorcycle/LatestModels';
 import MotorcycleDetails from './components/motorcycle/MotorcycleDetails';
 
-function App() {
+const App = () => {
   const navigate = useNavigate();
   const [state, setState] = useState({
     loggedInStatus: 'NOT_LOGGED_IN',
@@ -35,13 +35,11 @@ function App() {
       'http://localhost:3001/logged_in',
       { withCredentials: true },
     ).then((response) => {
-      // if (response.data.logged_in && state.loggedInStatus === 'NOT_LOGGED_IN') {
       if (response.data.logged_in) {
         setState({
           loggedInStatus: 'LOGGED_IN',
           user: response.data.user,
         });
-      // } else if (!response.data.logged_in && state.loggedInStatus === 'LOGGED_IN') {
       } else if (!response.data.logged_in) {
         setState({
           loggedInStatus: 'NOT_LOGGED_IN',
