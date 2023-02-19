@@ -12,10 +12,6 @@ const CityForm = (props) => {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
-    }).then((response) => {
-      alert('City created: ', response);
-    }).catch((error) => {
-      alert('Error creating city', error);
     });
   }
 

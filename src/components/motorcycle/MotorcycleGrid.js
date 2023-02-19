@@ -8,11 +8,7 @@ const MotorcycleGrid = (props) => {
 
   const fetchMotorDetails = async (event, motor) => {
     event.preventDefault();
-    try {
-      navigate(`/motorcycles/${motor.id}`, { state: { motor } });
-    } catch (error) {
-      alert('Error fetching data from server', error);
-    }
+    navigate(`/motorcycles/${motor.id}`, { state: { motor } });
   };
 
   return (

@@ -72,7 +72,6 @@ const MotorcycleDetails = () => {
                 <button
                   type="button"
                   className="flex w-48 justify-start gap-3 items-center bg-very_dark_limerick text-white text-xl font-bold rounded-full px-3 py-2 hover:bg-dark_limerick"
-                  onClick={() => { console.log('reserve'); }}
                 >
                   <svg
                     fill="none"

@@ -18,18 +18,12 @@ const LatestModels = () => {
 
   const fetchMotorDetails = async (event, motor) => {
     event.preventDefault();
-    try {
-      navigate(`/motorcycles/${motor.id}`, { state: { motor } });
-    } catch (error) {
-      alert('Error fetching data from server', error);
-    }
+    navigate(`/motorcycles/${motor.id}`, { state: { motor } });
   };
 
   useEffect(() => {
     axios.get('http://localhost:3001/motorcycles').then((response) => {
       setMotorcycles(response.data);
-    }).catch((error) => {
-      alert('Error fetching data from server', error);
     });
   }, []);
 
@@ -62,7 +56,6 @@ const LatestModels = () => {
             <SwiperSlide
               key={motor.id}
               className="flex flex-col w-52 h-auto justify-center items-center text-center gap-5   cursor-pointer"
-              onClick={console.log('Slidddder clicked')}
             >
               <Link
                 to={`/motorcycles/${motor.id}`}

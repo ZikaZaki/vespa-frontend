@@ -46,10 +46,11 @@ const App = () => {
           user: {},
         });
       } else {
-        console.log('Logged in status: ', state.loggedInStatus);
+        setState({
+          loggedInStatus: 'NOT_LOGGED_IN',
+          user: {},
+        });
       }
-    }).catch((error) => {
-      console.log('Check login status error: ', error);
     });
   };
 
@@ -137,6 +138,6 @@ const App = () => {
       </Routes>
     </div>
   );
-}
+};
 
 export default App;

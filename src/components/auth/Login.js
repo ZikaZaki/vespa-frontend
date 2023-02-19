@@ -48,7 +48,10 @@ export default class Login extends Component {
         });
       }
     }).catch((error) => {
-      alert('Login error: ', loginErrors, error);
+      this.setState({
+        loginErrors: error,
+      });
+      alert('Login error: ', loginErrors);
     });
     event.preventDefault();
   }
