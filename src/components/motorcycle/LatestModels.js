@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -14,6 +15,19 @@ import arrow from '../../assets/svg/arrow-left.svg';
 
 const LatestModels = () => {
   const [motorcycles, setMotorcycles] = useState(null);
+  const navigate = useNavigate();
+
+
+  const fetchMotorDetails = async (event, motor) => {
+    event.preventDefault();
+    try{
+
+      navigate(`/motorcycles/${motor.id}`, {state: {motor: motor}});
+    }catch(error){
+      // handle rejected Promise/errors/etc.
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     console.log('Motorcycles: ', motorcycles);
@@ -56,6 +70,11 @@ const LatestModels = () => {
               className="flex flex-col w-52 h-auto justify-center items-center text-center gap-5   cursor-pointer"
               onClick={console.log('Slidddder clicked')}
             >
+              <Link
+                to={`/motorcycles/${motor.id}`}
+                onClick={(e)=> fetchMotorDetails(e, motor)}
+                className="flex flex-col w-full h-full justify-center items-center text-center gap-5"
+                >
               <div className="flex flex-col justify-center items-center bg-bg_tertiary rounded-full">
                 <img src={motor.image_url} className="rounded-full h-[11rem] w-[11rem] object-fill" alt={motor.name} />
               </div>
@@ -65,6 +84,7 @@ const LatestModels = () => {
                   {motor.description}
                 </p>
               </div>
+              </Link>
               <div className="flex flex-row w-full h-12 items-center justify-center gap-1">
                 <a href="##" className="flex justify-center items-center p-2 w-10 h-10 text-gray-400 rounded-full border-2 border-gray-400 m-1 cursor-pointer hover:bg-very_dark_limerick lg:hover:text-white hover:border-very_dark_limerick">
                   <svg

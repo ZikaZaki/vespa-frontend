@@ -10,6 +10,7 @@ const Dashboard = (props) => {
     handleLogout,
     user,
     component: Component,
+    ...rest
   } = props;
   // const navigate = useNavigate();
   // const handleLogoutClick = () => {

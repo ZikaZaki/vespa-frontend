@@ -142,9 +142,11 @@ function App() {
           : (
             <>
               <Route
-                exact
-                path="/models"
-                element={PageNotFound}
+              replace // This is the key
+                path="*"
+                element={(
+                  <PageNotFound />
+              )}
               />
             </>
           )}
@@ -169,20 +171,19 @@ function App() {
               handleLogout={handleLogout}
               loggedInStatus={state.loggedInStatus}
               user={state.user}
-              component={MotorcycleDetails}
+              component={LatestModels}
             />
           )}
         />
-
         <Route
-          exact
-          path="/details/:id"
+          // exact
+          path="/motorcycles/:id"
           element={(
             <Dashboard
               handleLogout={handleLogout}
               loggedInStatus={state.loggedInStatus}
               user={state.user}
-              component={LatestModels}
+              component={MotorcycleDetails}
             />
           )}
         />
