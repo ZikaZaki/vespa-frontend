@@ -8,7 +8,6 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-// import { EffectCoverflow, Pagination, Navigation } from 'swiper';
 import { Pagination, Navigation } from 'swiper';
 
 import arrow from '../../assets/svg/arrow-left.svg';
@@ -17,17 +16,15 @@ const LatestModels = () => {
   const [motorcycles, setMotorcycles] = useState(null);
   const navigate = useNavigate();
 
-
   const fetchMotorDetails = async (event, motor) => {
     event.preventDefault();
-    try{
-
-      navigate(`/motorcycles/${motor.id}`, {state: {motor: motor}});
-    }catch(error){
+    try {
+      navigate(`/motorcycles/${motor.id}`, { state: { motor } });
+    } catch (error) {
       // handle rejected Promise/errors/etc.
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     console.log('Motorcycles: ', motorcycles);
@@ -72,18 +69,18 @@ const LatestModels = () => {
             >
               <Link
                 to={`/motorcycles/${motor.id}`}
-                onClick={(e)=> fetchMotorDetails(e, motor)}
+                onClick={(e) => fetchMotorDetails(e, motor)}
                 className="flex flex-col w-full h-full justify-center items-center text-center gap-5"
-                >
-              <div className="flex flex-col justify-center items-center bg-bg_tertiary rounded-full">
-                <img src={motor.image_url} className="rounded-full h-[11rem] w-[11rem] object-fill" alt={motor.name} />
-              </div>
-              <div>
-                <h1 className="text-xl font-extrabold my-1">{motor.name}</h1>
-                <p className="text-sm text-gray-400 w-full font-semibold my-1">
-                  {motor.description}
-                </p>
-              </div>
+              >
+                <div className="flex flex-col justify-center items-center bg-bg_tertiary rounded-full">
+                  <img src={motor.image_url} className="rounded-full h-[11rem] w-[11rem] object-fill" alt={motor.name} />
+                </div>
+                <div>
+                  <h1 className="text-xl font-extrabold my-1">{motor.name}</h1>
+                  <p className="text-sm text-gray-400 w-full font-semibold my-1">
+                    {motor.description}
+                  </p>
+                </div>
               </Link>
               <div className="flex flex-row w-full h-12 items-center justify-center gap-1">
                 <a href="##" className="flex justify-center items-center p-2 w-10 h-10 text-gray-400 rounded-full border-2 border-gray-400 m-1 cursor-pointer hover:bg-very_dark_limerick lg:hover:text-white hover:border-very_dark_limerick">

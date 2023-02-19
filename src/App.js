@@ -4,7 +4,6 @@ import axios from 'axios';
 import Home from './components/Home';
 import Dashboard from './components/dashboard/index';
 import City from './components/city/index';
-// import Sidebar from './components/dashboard/Sidebar';
 import Motorcycle from './components/motorcycle/index';
 import PageNotFound from './components/PageNotFound';
 import LatestModels from './components/motorcycle/LatestModels';
@@ -36,7 +35,6 @@ function App() {
       'http://localhost:3001/logged_in',
       { withCredentials: true },
     ).then((response) => {
-      // console.log('Logged in? ', response);
       // if (response.data.logged_in && state.loggedInStatus === 'NOT_LOGGED_IN') {
       if (response.data.logged_in) {
         setState({
@@ -63,9 +61,7 @@ function App() {
 
   return (
     <div className="block lg:flex h-screen w-screen bg-bg_secondary">
-      {/* <Sidebar /> */}
       <Routes>
-        {/* <Route exact path="/dragons" element={<DragonList />} /> */}
         <Route
           exact
           path="/"
@@ -90,103 +86,56 @@ function App() {
                     user={state.user}
                     component={LatestModels}
                   />
-              )}
-              />
-              {state.user.admin
-                ? (
-                  <>
-                    <Route
-                      exact
-                      path="/bikes"
-                      element={(
-                        <Dashboard
-                          handleLogout={handleLogout}
-                          loggedInStatus={state.loggedInStatus}
-                          user={state.user}
-                          component={Motorcycle}
-                        />
-                  )}
-                    />
-                    <Route
-                      exact
-                      path="/locations"
-                      element={(
-                        <Dashboard
-                          handleLogout={handleLogout}
-                          loggedInStatus={state.loggedInStatus}
-                          user={state.user}
-                          component={City}
-                        />
-                  )}
-                    />
-                  </>
-                )
-                : (
-                  <>
-                    <Route
-                      exact
-                      path="/locations"
-                      element={(
-                        <Dashboard
-                          handleLogout={handleLogout}
-                          loggedInStatus={state.loggedInStatus}
-                          user={state.user}
-                          component={PageNotFound}
-                        />
-                  )}
-                    />
-                  </>
                 )}
+              />
+              <Route
+                exact
+                path="/bikes"
+                element={(
+                  <Dashboard
+                    handleLogout={handleLogout}
+                    loggedInStatus={state.loggedInStatus}
+                    user={state.user}
+                    component={Motorcycle}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/motorcycles/:id"
+                element={(
+                  <Dashboard
+                    handleLogout={handleLogout}
+                    loggedInStatus={state.loggedInStatus}
+                    user={state.user}
+                    component={MotorcycleDetails}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/locations"
+                element={(
+                  <Dashboard
+                    handleLogout={handleLogout}
+                    loggedInStatus={state.loggedInStatus}
+                    user={state.user}
+                    component={City}
+                  />
+                )}
+              />
             </>
           )
           : (
             <>
               <Route
-              replace // This is the key
-                path="*"
+                replace // This is the key
                 element={(
                   <PageNotFound />
               )}
               />
             </>
           )}
-
-        <Route
-          exact
-          path="/latest"
-          element={(
-            <Dashboard
-              handleLogout={handleLogout}
-              loggedInStatus={state.loggedInStatus}
-              user={state.user}
-              component={LatestModels}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/details"
-          element={(
-            <Dashboard
-              handleLogout={handleLogout}
-              loggedInStatus={state.loggedInStatus}
-              user={state.user}
-              component={LatestModels}
-            />
-          )}
-        />
-        <Route
-          // exact
-          path="/motorcycles/:id"
-          element={(
-            <Dashboard
-              handleLogout={handleLogout}
-              loggedInStatus={state.loggedInStatus}
-              user={state.user}
-              component={MotorcycleDetails}
-            />
-          )}
-        />
       </Routes>
     </div>
   );
