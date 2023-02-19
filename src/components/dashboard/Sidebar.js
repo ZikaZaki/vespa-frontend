@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import avatar from '../../assets/images/avatar.jpg';
 import SearchForm from './SearchForm';
 import SocialLinks from './SocialLinks';
 import { ReactComponent as VespaLogo } from '../../assets/svg/logo.svg';
-import { Link } from 'react-router-dom';
 
 const Sidebar = (props) => {
   const { handleLogout, user } = props;
@@ -71,8 +71,8 @@ const Sidebar = (props) => {
           </button>
           {/* Logo-Container */}
           <div className="flex w-full h-16 justify-center items-center flex-1">
-            <Link 
-              to={"/"}
+            <Link
+              to="/"
               onClick={() => setToggle(!toggle)}
               className="flex w-full h-16 mx-2 items-center justify-center text-white font-bold text-2xl tracking-widest uppercase"
             >
@@ -108,22 +108,22 @@ const Sidebar = (props) => {
           {/* Menu-Links  */}
           <div className="flex flex-col w-full h-full justify-between gap-2 text-xl lg:text-lg font-bold text-gray-200 lg:text-gray-900 uppercase">
             <div className="flex flex-col w-full gap-2">
-              <Link 
-                to={"/models"}
+              <Link
+                to="/models"
                 className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
                 onClick={() => setToggle(!toggle)}
               >
                 Models
               </Link>
               <Link
-                to={"/bikes"}
+                to="/bikes"
                 className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
                 onClick={() => setToggle(!toggle)}
               >
                 Bikes List
               </Link>
               <Link
-                to={"/locations"}
+                to="/locations"
                 className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
                 onClick={() => setToggle(!toggle)}
               >
@@ -145,7 +145,7 @@ const Sidebar = (props) => {
               </a>
             </div>
             <Link
-              to={"/"}
+              to="/"
               onClick={() => handleLogout()}
               className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
             >
