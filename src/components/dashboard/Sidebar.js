@@ -129,13 +129,13 @@ const Sidebar = (props) => {
               >
                 Locations
               </Link>
-              <a
-                href="##"
+              <Link
+                to="/reservations"
                 className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"
                 onClick={() => setToggle(!toggle)}
               >
                 My Reservations
-              </a>
+              </Link>
               <a
                 href="##"
                 className="flex items-center w-full h-8 px-2 lg:h-10 lg:hover:bg-very_dark_limerick lg:hover:text-white"

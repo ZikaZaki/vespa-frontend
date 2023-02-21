@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Home from './components/Home';
 import Dashboard from './components/dashboard/index';
 import City from './components/city/index';
 import Motorcycle from './components/motorcycle/index';
-import PageNotFound from './components/PageNotFound';
 import LatestModels from './components/motorcycle/LatestModels';
 import MotorcycleDetails from './components/motorcycle/MotorcycleDetails';
+import Reservation from './components/reservation/index';
+import PageNotFound from './components/PageNotFound';
 
 const App = () => {
   const navigate = useNavigate();
@@ -78,57 +79,69 @@ const App = () => {
           )}
         />
         {state.loggedInStatus === 'LOGGED_IN' ? (
-           <>
+          <>
             <Route
-                exact
-                path="/models"
-                element={(
-                  <Dashboard
-                    handleLogout={handleLogout}
-                    loggedInStatus={state.loggedInStatus}
-                    user={state.user}
-                    component={LatestModels}
-                  />
+              exact
+              path="/models"
+              element={(
+                <Dashboard
+                  handleLogout={handleLogout}
+                  loggedInStatus={state.loggedInStatus}
+                  user={state.user}
+                  component={LatestModels}
+                />
                 )}
-              />
-              <Route
-                exact
-                path="/bikes"
-                element={(
-                  <Dashboard
-                    handleLogout={handleLogout}
-                    loggedInStatus={state.loggedInStatus}
-                    user={state.user}
-                    component={Motorcycle}
-                  />
+            />
+            <Route
+              exact
+              path="/bikes"
+              element={(
+                <Dashboard
+                  handleLogout={handleLogout}
+                  loggedInStatus={state.loggedInStatus}
+                  user={state.user}
+                  component={Motorcycle}
+                />
                 )}
-              />
-              <Route
-                exact
-                path="/motorcycles/:id"
-                element={(
-                  <Dashboard
-                    handleLogout={handleLogout}
-                    loggedInStatus={state.loggedInStatus}
-                    user={state.user}
-                    component={MotorcycleDetails}
-                  />
+            />
+            <Route
+              exact
+              path="/motorcycles/:id"
+              element={(
+                <Dashboard
+                  handleLogout={handleLogout}
+                  loggedInStatus={state.loggedInStatus}
+                  user={state.user}
+                  component={MotorcycleDetails}
+                />
                 )}
-              />
-              <Route
-                exact
-                path="/locations"
-                element={(
-                  <Dashboard
-                    handleLogout={handleLogout}
-                    loggedInStatus={state.loggedInStatus}
-                    user={state.user}
-                    component={City}
-                  />
+            />
+            <Route
+              exact
+              path="/locations"
+              element={(
+                <Dashboard
+                  handleLogout={handleLogout}
+                  loggedInStatus={state.loggedInStatus}
+                  user={state.user}
+                  component={City}
+                />
                 )}
-              />
-           </>
-        ): (<Route exact path="*" element={<PageNotFound />} />)}
+            />
+            <Route
+              exact
+              path="/reservations"
+              element={(
+                <Dashboard
+                  handleLogout={handleLogout}
+                  loggedInStatus={state.loggedInStatus}
+                  user={state.user}
+                  component={Reservation}
+                />
+              )}
+            />
+          </>
+        ) : (<Route exact path="*" element={<PageNotFound />} />)}
       </Routes>
     </div>
   );

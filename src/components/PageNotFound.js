@@ -14,7 +14,8 @@ const PageNotFound = () => (
           Page not found
         </h1>
         <p className="my-1 text-gray-600 text-center">
-          The page you are looking for might have been removed had its name changed or is temporarily unavailable.
+          The page you are looking for might have been removed had
+          its name changed or is temporarily unavailable.
         </p>
       </div>
       <div>
@@ -28,7 +29,7 @@ const PageNotFound = () => (
         <button
           type="button"
           className="bg-gray-700 text-white text-lg font-bold py-2 px-4 rounded-full mt-4 ml-4"
-          onClick={() => window.location.href = '/'}
+          onClick={() => { window.location.href = '/'; }}
         >
           Go Home
         </button>
