@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import Home from './components/Home';
 import Dashboard from './components/dashboard/index';
@@ -23,11 +23,16 @@ const App = () => {
   };
 
   const handleLogout = () => {
-    setState({
-      loggedInStatus: 'NOT_LOGGED_IN',
-      user: {},
+    axios.delete(
+      'http://localhost:3001/logout',
+      { withCredentials: true },
+    ).then(() => {
+      setState({
+        loggedInStatus: 'NOT_LOGGED_IN',
+        user: {},
+      });
+      navigate('/');
     });
-    navigate('/');
   };
 
   const checkLoginStatus = () => {
@@ -72,10 +77,9 @@ const App = () => {
             />
           )}
         />
-        {state.loggedInStatus === 'LOGGED_IN'
-          ? (
-            <>
-              <Route
+        {state.loggedInStatus === 'LOGGED_IN' ? (
+           <>
+            <Route
                 exact
                 path="/models"
                 element={(
@@ -123,18 +127,8 @@ const App = () => {
                   />
                 )}
               />
-            </>
-          )
-          : (
-            <>
-              <Route
-                replace // This is the key
-                element={(
-                  <PageNotFound />
-              )}
-              />
-            </>
-          )}
+           </>
+        ): (<Route exact path="*" element={<PageNotFound />} />)}
       </Routes>
     </div>
   );
