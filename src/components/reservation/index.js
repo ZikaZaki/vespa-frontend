@@ -4,6 +4,7 @@ import ReservationList from './ReservationList';
 import ReservationGrid from './ReservationGrid';
 import ReservationForm from './ReservationForm';
 import Dialog from '../Dialog';
+import empty from '../../assets/svg/empty.svg';
 
 const Reservation = () => {
   const [listView, setListView] = useState(true);
@@ -12,6 +13,7 @@ const Reservation = () => {
   const [dialog, setDialog] = useState({
     message: '', show: false, itemId: null, action: '',
   });
+  const [isEmpty, setIsEmpty] = useState(true);
 
   const handleDialog = (message, show, itemId, action) => {
     setDialog({
@@ -54,13 +56,16 @@ const Reservation = () => {
     ).then((response) => {
       setReservations(response.data);
     });
+    if (reservations && reservations.length > 0) {
+      setIsEmpty(false);
+    }
   }, [reservations]);
 
   return (
   /* List of Motorcycles */
-    <div className="flex flex-col w-full bg-bg_secondary px-4 py-2 lg:px-6 overflow-x-hidden">
+    <div className="flex flex-col w-full h-full bg-bg_secondary px-4 py-2 lg:px-6 overflow-x-hidden">
       <div className="flex justify-between items-center w-full pb-4 md:py-6">
-        <h1 className="text-gray-800 text-4xl font-bold">My Reservations</h1>
+        <h1 className="text-gray-800 text-2xl lg:text-4xl font-semibold lg:font-bold">My Reservations</h1>
         <button
           type="button"
           className="inline-flex items-center py-2 px-4 bg-blue-600 text-white font-medium text-sm rounded-md border-2 hover:bg-bg_secondary hover:text-blue-600 hover:border-blue-600 focus:outline-none focus:bg-white focus:border-blue-600 focus:text-blue-600"
@@ -144,22 +149,34 @@ const Reservation = () => {
           </button>
         </div>
       </div>
-      {/* List-View Table */}
-      {listView && (
-      <ReservationList
-        reservations={reservations}
-        handleDelete={handleDelete}
-        handleDialog={handleDialog}
-      />
-      )}
+      {!isEmpty ? (
+        <>
+          {/* List-View Table */}
+          {listView && (
+          <ReservationList
+            reservations={reservations}
+            handleDelete={handleDelete}
+            handleDialog={handleDialog}
+          />
+          )}
 
-      {/* Grid-View */}
-      {!listView && (
-      <ReservationGrid
-        reservations={reservations}
-        handleDelete={handleDelete}
-        handleDialog={handleDialog}
-      />
+          {/* Grid-View */}
+          {!listView && (
+          <ReservationGrid
+            reservations={reservations}
+            handleDelete={handleDelete}
+            handleDialog={handleDialog}
+          />
+          )}
+        </>
+      ) : (
+      /* When List is Empty */
+        <div className="flex p-2 lg:p-4 items-center justify-center w-full h-full">
+          <div className="flex flex-col items-center justify-center">
+            <img src={empty} alt="empty" className="w-full h-44" />
+            <p className="text-2xl p-4 font-semibold text-gray-500">No reservations yet</p>
+          </div>
+        </div>
       )}
 
       {/* Modal toggle */}
