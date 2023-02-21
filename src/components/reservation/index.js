@@ -154,13 +154,13 @@ const Reservation = () => {
       )}
 
       {/* Grid-View */}
-      {/* {!listView && (
+      {!listView && (
       <ReservationGrid
         reservations={reservations}
         handleDelete={handleDelete}
         handleDialog={handleDialog}
       />
-      )} */}
+      )}
 
       {/* Modal toggle */}
       {showAddModal || showEditModal ? (

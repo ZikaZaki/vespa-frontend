@@ -6,33 +6,33 @@ const ReservationGrid = (props) => {
   const { reservations, handleDialog } = props;
   const navigate = useNavigate();
 
-  const fetchMotorDetails = async (event, motor) => {
+  const fetchReservationDetails = async (event, reservation) => {
     event.preventDefault();
-    navigate(`/motorcycles/${motor.id}`, { state: { motor } });
+    navigate(`/reservations/${reservation.id}`, { state: { reservation } });
   };
 
   return (
-  /* MotorcyclesGrid */
+  /* reservationsGrid */
     <div className="flex justify-center md:justify-start items-center gap-5 py-4 flex-wrap">
-      { motorcycles && motorcycles.map((motor) => (
-        <div key={motor.id} className="max-w-screen-xsm bg-white border border-gray-200 rounded-lg shadow-md">
+      { reservations && reservations.map((reservation) => (
+        <div key={reservation.id} className="max-w-screen-xsm bg-white border border-gray-200 rounded-lg shadow-md">
           <a href="##">
-            <img className="rounded-t-lg" src={motor.image_url} alt="" />
+            <img className="rounded-t-lg" src={reservation.image_url} alt="" />
           </a>
           <div className="p-4">
             <a href="##">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{motor.model_no}</h5>
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{reservation.motorcycle}</h5>
             </a>
             <p className="mb-3 font-normal text-gray-700">
-              {motor.description ? motor.description : 'No description'}
+              {reservation.city}
             </p>
             <div className="flex justify-center items-center gap-2">
               <Link
-                to={`/motorcycles/${motor.id}`}
-                onClick={(e) => fetchMotorDetails(e, motor)}
+                to={`/reservations/${reservation.id}`}
+                onClick={(e) => fetchReservationDetails(e, reservation)}
               >
                 <button
-                  value={motor.id}
+                  value={reservation.id}
                   type="button"
                   className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800"
                 >
@@ -50,7 +50,7 @@ const ReservationGrid = (props) => {
                 </button>
               </Link>
               <button
-                value={motor.id}
+                value={reservation.id}
                 type="button"
                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800"
               >
@@ -66,13 +66,13 @@ const ReservationGrid = (props) => {
                 </svg>
               </button>
               <button
-                value={motor.id}
+                value={reservation.id}
                 type="button"
                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-red-600"
                 onClick={() => handleDialog(
-                  `Are you sure you want to delete ${motor.name}?`,
+                  `Are you sure you want to delete ${reservation.motorcycle}?`,
                   true,
-                  motor.id,
+                  reservation.id,
                   '',
                 )}
               >
