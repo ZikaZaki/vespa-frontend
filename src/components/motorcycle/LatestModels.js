@@ -29,7 +29,7 @@ const LatestModels = () => {
 
   return (
   /* List of Latest Models */
-    <div className="flex flex-col w-full h-full bg-bg_secondary p-4 lg:p-6 overflow-x-hidden">
+    <div className="relative flex flex-col w-full h-full bg-bg_secondary p-4 lg:p-6 overflow-x-hidden">
       <div className="flex flex-col w-full p-2 lg:p-4 text-center justify-center items-center">
         {/* Title */}
         <h1 className="text-gray-800 text-4xl font-extrabold">LATEST MODELS</h1>
@@ -110,7 +110,7 @@ const LatestModels = () => {
         <div className="flex p-2">
           <button
             type="button"
-            className="swiper-button-prev after:content-[''] absolute left-[18rem] hidden lg:flex self-center w-16 h-12 justify-end items-center p-4 text-white bg-very_dark_limerick rounded-br-full rounded-tr-full hover:bg-dark_limerick"
+            className="swiper-button-prev after:content-[''] absolute left-[0] hidden lg:flex self-center w-16 h-12 justify-end items-center p-4 text-white bg-very_dark_limerick rounded-br-full rounded-tr-full hover:bg-dark_limerick"
           >
             <img className="w-7 h-7 rotate-180" src={arrow} alt="left-arrow" />
           </button>

@@ -10,10 +10,10 @@ const Dashboard = (props) => {
   } = props;
 
   return (
-    <>
+    <div className="flex w-full h-full flex-col lg:flex-row">
       <Sidebar handleLogout={handleLogout} user={user} />
       <Component />
-    </>
+    </div>
   );
 };
 

@@ -12,20 +12,33 @@ const ReservationGrid = (props) => {
   };
 
   return (
-  /* reservationsGrid */
-    <div className="flex justify-center md:justify-start items-center gap-5 py-4 flex-wrap">
+    /* reservationsGrid */
+    <div className="flex flex-wrap justify-between py-4">
       { reservations && reservations.map((reservation) => (
-        <div key={reservation.id} className="max-w-screen-xsm bg-white border border-gray-200 rounded-lg shadow-md">
+        <div key={reservation.id} className="flex-[0_0_100%] max-w-full md:flex-[0_0_calc(50%-20px)] md:max-w-[calc(50%-20px)] lg:flex-[0_0_calc(33.33%-20px)] lg:max-w-[calc(33.33%-20px)] mb-5 transition-all duration-300 bg-white border-2 border-transparent hover:border-very_dark_limerick rounded-lg shadow-md">
           <a href="##">
-            <img className="rounded-t-lg" src={reservation.image_url} alt="" />
+            <img className="rounded-t-lg" src={reservation.motorcycle_image} alt="" />
           </a>
           <div className="p-4">
             <a href="##">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{reservation.motorcycle}</h5>
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-very_dark_limerick">
+                {reservation.motorcycle}
+              </h5>
             </a>
-            <p className="mb-3 font-normal text-gray-700">
-              {reservation.city}
-            </p>
+            <div>
+              <p className="mb-1 font-normal text-gray-700">
+                <strong>City: </strong>
+                {reservation.city}
+              </p>
+              <p className="mb-1 font-normal text-gray-700">
+                <strong>Reserved Date: </strong>
+                {reservation.reserve_date}
+              </p>
+              <p className="mb-1 font-normal text-gray-700">
+                <strong>Returning Date: </strong>
+                {reservation.returning_date}
+              </p>
+            </div>
             <div className="flex justify-center items-center gap-2">
               <Link
                 to={`/reservations/${reservation.id}`}
@@ -34,7 +47,7 @@ const ReservationGrid = (props) => {
                 <button
                   value={reservation.id}
                   type="button"
-                  className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800"
+                  className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-dark_limerick hover:text-white"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -52,7 +65,7 @@ const ReservationGrid = (props) => {
               <button
                 value={reservation.id}
                 type="button"
-                className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800"
+                className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-dark_limerick hover:text-white"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -68,7 +81,7 @@ const ReservationGrid = (props) => {
               <button
                 value={reservation.id}
                 type="button"
-                className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-red-600"
+                className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-red-600 hover:text-white"
                 onClick={() => handleDialog(
                   `Are you sure you want to delete ${reservation.motorcycle}?`,
                   true,
