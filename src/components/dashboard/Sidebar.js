@@ -82,7 +82,7 @@ const Sidebar = (props) => {
         </div>
         <hr className="hidden lg:block h-[3px] bg-gray-300" />
         {/* Profile-Container  */}
-        <div className="relative flex flex-row flex-wrap justify-center items-center lg:flex-row px-4 py-6 w-full h-auto">
+        <div className="relative flex w-max px-4 py-6 h-auto justify-center items-center">
           {/* Profile-Photo  */}
           <div className="w-14 h-14 rounded-full overflow-hidden outline-none ring-2 ring-lime-200">
             <img src={avatar} alt="avatar" className="w-14 h-14 object-cover" />

@@ -48,6 +48,8 @@ const Reservation = () => {
   };
 
   const [reservations, setReservations] = useState(null);
+  const [cities, setCities] = useState(null);
+  const [motorcycles, setMotorcycles] = useState(null);
 
   useEffect(() => {
     axios.get(
@@ -59,6 +61,12 @@ const Reservation = () => {
     if (reservations && reservations.length > 0) {
       setIsEmpty(false);
     }
+    axios.get('http://localhost:3001/cities').then((response) => {
+      setCities(response.data);
+    });
+    axios.get('http://localhost:3001/motorcycles').then((response) => {
+      setMotorcycles(response.data);
+    });
   }, [reservations]);
 
   return (
@@ -196,7 +204,11 @@ const Reservation = () => {
                 </button>
                 {
                   showAddModal ? (
-                    <ReservationForm showModal={showModal} />
+                    <ReservationForm
+                      showModal={showModal}
+                      cities={cities}
+                      motorcycles={motorcycles}
+                    />
                   ) : null
                 }
               </div>

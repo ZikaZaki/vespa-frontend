@@ -73,7 +73,7 @@ const MotorcycleForm = (props) => {
               className="block uppercase tracking-wide mb-2 text-sm font-medium text-gray-900"
             >
               Photo
-              <div className="flex justify-center mt-1 rounded-md border-2 border-dashed border-gray-300 p-2 lg:p-4">
+              <div className="flex justify-center mt-1 normal-case rounded-md border-2 border-dashed border-gray-300 p-2 lg:p-4">
                 <div className="text-center cursor-pointer">
                   <svg
                     className="mx-auto h-12 w-12 text-gray-400"
