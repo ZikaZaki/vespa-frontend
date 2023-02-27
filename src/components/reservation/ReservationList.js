@@ -1,8 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 const ReservationList = (props) => {
   const { reservations, handleDialog } = props;
+  const navigate = useNavigate();
+
+  const fetchReservationDetails = async (event, reservation) => {
+    event.preventDefault();
+    navigate(`/reservations/${reservation.id}`, { state: { reservation } });
+  };
 
   return (
   /* ReservationList */
@@ -11,22 +19,22 @@ const ReservationList = (props) => {
         <table className="w-full table-fixed text-sm text-left text-gray-500">
           <thead className="text-xs text-gray-700 uppercase bg-bg_tertiary">
             <tr>
-              <th scope="col" className="px-6 py-3 w-4">
+              <th scope="col" className="w-4 px-4 py-2 lg:px-6 lg:py-3">
                 ID
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-4 py-2 lg:px-6 lg:py-3">
                 MOTORCYCLE
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-4 py-2 lg:px-6 lg:py-3">
                 CITY
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-4 py-2 lg:px-6 lg:py-3">
                 RESERVE DATE
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-4 py-2 lg:px-6 lg:py-3">
                 RETURNING DATE
               </th>
-              <th scope="col" className="text-center px-6 py-3">
+              <th scope="col" className="text-center px-4 py-2 lg:px-6 lg:py-3">
                 ACTION
               </th>
             </tr>
@@ -34,46 +42,51 @@ const ReservationList = (props) => {
           <tbody>
             { reservations && reservations.map((reservation) => (
               <tr key={reservation.id} className="bg-white border-b hover:bg-gray-50">
-                <td className="w-4 p-4">
+                <td className="w-4 px-4 py-2 lg:p-4">
                   <div className="flex items-center">
                     {reservation.id}
                   </div>
                 </td>
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                <th scope="row" className="px-4 py-2 lg:px-6 lg:py-3 font-medium text-gray-900 whitespace-nowrap">
                   <div className="text-base font-semibold">{reservation.motorcycle}</div>
                 </th>
-                <td className="px-6 py-4">
+                <td className="px-4 py-2 lg:px-6 lg:py-3">
                   <div className="text-base font-semibold">{reservation.city}</div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-4 py-2 lg:px-6 lg:py-3">
                   {reservation.reserve_date}
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-4 py-2 lg:px-6 lg:py-3">
                   {reservation.returning_date}
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-4 py-2 lg:px-6 lg:py-3">
                   {/* <!-- View, Edit & Delete Dialogue toggle --> */}
-                  <button
-                    value={reservation.id}
-                    type="button"
-                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800"
+                  <Link
+                    to={`/reservations/${reservation.id}`}
+                    onClick={(e) => fetchReservationDetails(e, reservation)}
                   >
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      className="w-6 h-6 pointer-events-none"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <button
+                      value={reservation.id}
+                      type="button"
+                      className="inline-flex items-center p-2 lg:px-3 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </button>
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        className="w-6 h-6 pointer-events-none"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </button>
+                  </Link>
                   <button
                     value={reservation.id}
                     type="button"
-                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800"
+                    className="inline-flex items-center p-2 lg:px-3 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -89,9 +102,9 @@ const ReservationList = (props) => {
                   <button
                     value={reservation.id}
                     type="button"
-                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-red-600"
+                    className="inline-flex items-center p-2 lg:px-3 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-red-600"
                     onClick={() => handleDialog(
-                      `Are you sure you want to delete the ${reservation.motorcycle} reservation?`,
+                      `Are you sure you want to delete the "${reservation.motorcycle}" reservation?`,
                       true,
                       reservation.id,
                       '',

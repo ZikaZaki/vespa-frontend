@@ -6,10 +6,10 @@ import ComboBox from '../ComboBox';
 const ReservationForm = (props) => {
   const { 
     showModal,
+    user,
     motorcycles,
     cities
    } = props;
-  // reserve_date, :returning_date, :user_id, :motorcycle_id, :city_id
   const [selectedCity, setSelectedCity] = useState(cities[0]);
   const [selectedMotorcycle, setSelectedMotorcycle] = useState(motorcycles[0]);
 
@@ -21,16 +21,15 @@ const ReservationForm = (props) => {
     });
   }
 
-  // console.log(selectedCity);
-
   function handleSubmit(event) {
     event.preventDefault();
     const data = new FormData();
     data.append('reservation[reserve_date]', event.target.reserve_date.value);
     data.append('reservation[returning_date]', event.target.returning_date.value);
-    // data.append('reservation[user_id]', event.target.finance_fee.value);
-    data.append('reservation[motorcycle_id]', event.target.purchase_fee.value);
-    // data.append('reservation[city_id]', event.target.production_date.value);
+    data.append('reservation[city_id]', selectedCity.id);
+    data.append('reservation[motorcycle_id]', selectedMotorcycle.id);
+    data.append('reservation[user_id]', user.id);
+    // data.append('reservation[notes]', event.target.notes.value);
     submitToAPI(data);
     showModal('CLOSE');
   }
@@ -40,52 +39,6 @@ const ReservationForm = (props) => {
       <h3 className="mb-6 text-2xl text-center font-medium text-gray-900">Create Reservation</h3>
       <form className="" onSubmit={(e) => handleSubmit(e)}>
         <div className="flex flex-col justify-center items-center w-full ">
-          <div className="flex w-full flex-wrap">
-            <div className="w-full md:w-1/2 px-3 mb-2">
-              <label
-                htmlFor="city_id"
-                className="block uppercase tracking-wide mb-2 text-sm font-medium text-gray-900"
-              >
-                CITY
-                <select
-                  name="city_id"
-                  id="city_id"
-                  placeholder="choose location"
-                  className="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-dark_limerick focus:border-very_dark_limerick block w-full p-2.5"
-                  required
-                >
-                  <option>Option 1</option>
-                  <option>Option 1</option>
-                  <option>Option 1</option>
-                  <option>Option 1</option>
-                  <option>Option 1</option>
-                  <option>Option 1</option>
-                </select>
-              </label>
-            </div>
-            <div className="w-full md:w-1/2 px-3 mb-2">
-              <label
-                htmlFor="motorcycle_id"
-                className="block uppercase tracking-wide mb-2 text-sm font-medium text-gray-900"
-              >
-                Motorcycle
-                <select
-                  name="motorcycle_id"
-                  id="motorcycle_id"
-                  placeholder="choose motorcycle"
-                  className="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-dark_limerick focus:border-very_dark_limerick block w-full p-2.5"
-                  required
-                >
-                  <option>Option 1</option>
-                  <option>Option 1</option>
-                  <option>Option 1</option>
-                  <option>Option 1</option>
-                  <option>Option 1</option>
-                  <option>Option 1</option>
-                </select>
-              </label>
-            </div>
-          </div>
           <div className="flex w-full flex-wrap">
             <div className="w-full md:w-1/2 px-3 mb-2">
               <label
@@ -124,7 +77,7 @@ const ReservationForm = (props) => {
             items={cities}
             selected={selectedCity}
             setSelected={setSelectedCity}
-            label="City"
+            label="Location"
             name="city_id"
             queryField="name"
             displayField="name"

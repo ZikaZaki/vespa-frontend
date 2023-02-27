@@ -64,7 +64,7 @@ const MotorcycleList = (props) => {
                     <button
                       value={motor.id}
                       type="button"
-                      className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800"
+                      className="inline-flex items-center p-2 lg:px-3 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800"
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -82,7 +82,7 @@ const MotorcycleList = (props) => {
                   <button
                     value={motor.id}
                     type="button"
-                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800"
+                    className="inline-flex items-center p-2 lg:px-3 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-gray-800"
                   >
                     <svg
                       viewBox="0 0 24 24"
@@ -98,9 +98,9 @@ const MotorcycleList = (props) => {
                   <button
                     value={motor.id}
                     type="button"
-                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-red-600"
+                    className="inline-flex items-center p-2 lg:px-3 text-sm font-medium text-center text-gray-400 rounded-lg hover:bg-bg_secondary hover:text-red-600"
                     onClick={() => handleDialog(
-                      `Are you sure you want to delete ${motor.name}?`,
+                      `Are you sure you want to delete "${motor.name}" motorcycle?`,
                       true,
                       motor.id,
                       '',

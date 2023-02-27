@@ -6,7 +6,8 @@ import ReservationForm from './ReservationForm';
 import Dialog from '../Dialog';
 import empty from '../../assets/svg/empty.svg';
 
-const Reservation = () => {
+const Reservation = (props) => {
+  const user = props.user;
   const [listView, setListView] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -67,10 +68,11 @@ const Reservation = () => {
     axios.get('http://localhost:3001/motorcycles').then((response) => {
       setMotorcycles(response.data);
     });
-  }, [reservations]);
+    // console.log("USERSER: ", user);
+}, [reservations]);
 
   return (
-  /* List of Motorcycles */
+  /* List of Reservations */
     <div className="flex flex-col w-full h-full bg-bg_secondary px-4 py-2 lg:px-6 overflow-x-hidden">
       <div className="flex justify-between items-center w-full pb-4 md:py-6">
         <h1 className="text-gray-800 text-2xl lg:text-4xl font-semibold lg:font-bold">Reservations</h1>
@@ -206,6 +208,7 @@ const Reservation = () => {
                   showAddModal ? (
                     <ReservationForm
                       showModal={showModal}
+                      user={user}
                       cities={cities}
                       motorcycles={motorcycles}
                     />

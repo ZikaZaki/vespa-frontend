@@ -13,7 +13,7 @@ const ReservationGrid = (props) => {
 
   return (
     /* reservationsGrid */
-    <div className="flex flex-wrap justify-between py-4">
+    <div className="flex flex-wrap py-4 gap-4 justify-center md:justify-start">
       { reservations && reservations.map((reservation) => (
         <div key={reservation.id} className="flex-[0_0_100%] max-w-full md:flex-[0_0_calc(50%-20px)] md:max-w-[calc(50%-20px)] lg:flex-[0_0_calc(33.33%-20px)] lg:max-w-[calc(33.33%-20px)] mb-5 transition-all duration-300 bg-white border-2 border-transparent hover:border-very_dark_limerick rounded-lg shadow-md">
           <a href="##">
@@ -39,7 +39,7 @@ const ReservationGrid = (props) => {
                 {reservation.returning_date}
               </p>
             </div>
-            <div className="flex justify-center items-center gap-2">
+            <div className="flex justify-center items-center mt-4 gap-2">
               <Link
                 to={`/reservations/${reservation.id}`}
                 onClick={(e) => fetchReservationDetails(e, reservation)}
