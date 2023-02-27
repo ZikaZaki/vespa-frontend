@@ -1,6 +1,6 @@
-import { Fragment, useState } from 'react'
-import { Combobox, Transition } from '@headlessui/react'
-
+import { Fragment, useState } from 'react';
+import { Combobox, Transition } from '@headlessui/react';
+import PropTypes from 'prop-types';
 
 const ComboBox = (props) => {
   const {
@@ -13,25 +13,21 @@ const ComboBox = (props) => {
     name,
     placeholder,
     imageField,
-    // className,
-    ...rest
+    // className
   } = props;
 
   const [query, setQuery] = useState('');
 
-  const filteredItems = 
-    items.length > 0 && query === ''
-      ? items
-      : items.filter((item) =>
-          item[queryField]
-            .toLowerCase()
-            .replace(/\s+/g, '')
-            .includes(query.toLowerCase().replace(/\s+/g, ''))
-        )
+  const filteredItems = items.length > 0 && query === ''
+    ? items
+    : items.filter((item) => item[queryField]
+      .toLowerCase()
+      .replace(/\s+/g, '')
+      .includes(query.toLowerCase().replace(/\s+/g, '')));
 
   return (
     <div className="flex w-full">
-      <Combobox value={selected} onChange={setSelected} >
+      <Combobox value={selected} onChange={setSelected}>
         <div className="relative w-full">
           <label
             htmlFor={name}
@@ -75,24 +71,23 @@ const ComboBox = (props) => {
                   filteredItems.map((item) => (
                     <Combobox.Option
                       key={item.id}
-                      className={({ active }) =>
-                        `relative cursor-default select-none py-2 px-4 ${
-                          active ? 'bg-teal-600 text-white' : 'text-gray-900'
-                        }`
-                      }
+                      className={({ active }) => `relative cursor-default select-none py-2 px-4 ${
+                        active ? 'bg-teal-600 text-white' : 'text-gray-900'
+                      }`}
                       value={item}
                     >
-                      {({ selected, active }) => (
+                      {/* {({ selected, active }) => ( */}
+                      {({ selected }) => (
                         <>
                           <div
                             className={`flex justify-start items-center gap-2 w-full truncate ${
                               selected ? 'font-medium' : 'font-normal'
                             }`}
                           >
-                            <img 
-                              src={item[imageField]} 
-                              className="inline-flex w-10 h-10 rounded-full" 
-                              alt="item-image"
+                            <img
+                              src={item[imageField]}
+                              className="inline-flex w-10 h-10 rounded-full"
+                              alt={item[displayField]}
                             />
                             {item[displayField]}
                           </div>
@@ -108,6 +103,19 @@ const ComboBox = (props) => {
       </Combobox>
     </div>
   );
+};
+
+ComboBox.propTypes = {
+  items: PropTypes.instanceOf(Array).isRequired,
+  selected: PropTypes.instanceOf(Object).isRequired,
+  setSelected: PropTypes.func.isRequired,
+  displayField: PropTypes.string.isRequired,
+  queryField: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  imageField: PropTypes.string.isRequired,
+  // className: PropTypes.string.optional,
 };
 
 export default ComboBox;

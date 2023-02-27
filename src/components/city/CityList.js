@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 
-
 const CityList = (props) => {
   const { cities, handleDialog } = props;
   const navigate = useNavigate();

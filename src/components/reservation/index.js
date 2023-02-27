@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import ReservationList from './ReservationList';
 import ReservationGrid from './ReservationGrid';
 import ReservationForm from './ReservationForm';
@@ -7,7 +8,7 @@ import Dialog from '../Dialog';
 import empty from '../../assets/svg/empty.svg';
 
 const Reservation = (props) => {
-  const user = props.user;
+  const { user } = props;
   const [listView, setListView] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -69,7 +70,7 @@ const Reservation = (props) => {
       setMotorcycles(response.data);
     });
     // console.log("USERSER: ", user);
-}, [reservations]);
+  }, [reservations]);
 
   return (
   /* List of Reservations */
@@ -227,6 +228,15 @@ const Reservation = (props) => {
       />
     </div>
   );
+};
+
+Reservation.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    email: PropTypes.string,
+    role: PropTypes.string,
+  }).isRequired,
 };
 
 export default Reservation;

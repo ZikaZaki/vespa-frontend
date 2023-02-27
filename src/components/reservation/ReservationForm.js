@@ -1,15 +1,15 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ComboBox from '../ComboBox';
 
 const ReservationForm = (props) => {
-  const { 
+  const {
     showModal,
     user,
     motorcycles,
-    cities
-   } = props;
+    cities,
+  } = props;
   const [selectedCity, setSelectedCity] = useState(cities[0]);
   const [selectedMotorcycle, setSelectedMotorcycle] = useState(motorcycles[0]);
 
@@ -133,6 +133,11 @@ const ReservationForm = (props) => {
 
 ReservationForm.propTypes = {
   showModal: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
+  motorcycles: PropTypes.instanceOf(Array).isRequired,
+  cities: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default ReservationForm;
